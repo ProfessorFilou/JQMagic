@@ -78,7 +78,6 @@
   }
   .share-btn-top:hover { border-color: var(--gold); }
 
-  /* Volume Controller in Topbar */
   .vol-control { display: flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 8px; font-size: 0.72rem; color: var(--mist); }
   .vol-control input[type="range"] { width: 64px; accent-color: var(--gold); cursor: pointer; }
 
@@ -134,7 +133,6 @@
   .section { background: var(--surface); border-radius: 20px; border: 1px solid var(--line); padding: 24px; margin-bottom: 22px; }
   .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
   
-  /* Vinyl Record Animation */
   .album-cover { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: var(--surface-2); border: 1.5px solid var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,0.35); position: relative; }
   .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
   .album-cover.playing-vinyl img {
@@ -151,7 +149,6 @@
   .section h3 { font-size: 1.08rem; font-weight: 700; color: var(--paper); }
   .section-sub { color: var(--mist); font-size: 0.82rem; margin-top: 3px; letter-spacing: 0.02em; }
 
-  /* Top Hit Spotlight */
   .tophit-banner {
     background: linear-gradient(135deg, rgba(216,174,93,0.12) 0%, rgba(20,19,29,0.95) 70%);
     border: 1px solid var(--gold); border-radius: 16px; padding: 16px; margin-bottom: 22px;
@@ -164,7 +161,6 @@
   .tophit-title { font-size: 1rem; font-weight: 700; color: var(--paper); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tophit-desc { font-size: 0.82rem; color: var(--mist); }
 
-  /* Top 3 Sektion */
   .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
   .top3-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
   .top3-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--ink); margin-bottom: 8px; border: 1px solid var(--line); transition: transform 0.2s ease; }
@@ -173,7 +169,6 @@
   .top3-title { font-weight: 700; font-size: 0.82rem; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .top3-badge { font-size: 0.65rem; color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 2px; }
 
-  /* Umfrage Widget */
   .poll-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 22px; }
   .poll-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 12px; color: var(--paper); display: flex; align-items: center; gap: 8px; }
   .poll-options { display: flex; flex-direction: column; gap: 8px; }
@@ -199,7 +194,6 @@
   .play-btn.errored { background: var(--slate); color: var(--paper); cursor: not-allowed; }
   .play-btn:disabled { opacity: 0.6; }
 
-  /* Equalizer Animation */
   .eq-bars { display: none; align-items: flex-end; gap: 2px; height: 14px; width: 14px; }
   .eq-bars span { display: block; width: 3px; background: currentColor; border-radius: 1px; animation: eqAnim 0.6s ease-in-out infinite alternate; }
   .eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
@@ -231,13 +225,12 @@
 
   audio { display: none; }
 
-  .link-list { display: flex; flex-direction: column; gap: 11px; }
-
   footer { text-align: center; padding: 34px 16px 10px; color: var(--mist); font-size: 0.82rem; }
   footer .fine-print { font-size: 0.74rem; margin-top: 5px; display: block; opacity: 0.75; }
   
   .admin-trigger { cursor: pointer; user-select: none; }
 
+  /* Modernes Admin Panel mit klaren Kacheln */
   .admin-overlay {
     position: fixed; inset: 0; background: rgba(10,9,16,0.86);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
@@ -246,28 +239,39 @@
   .admin-overlay.open { display: flex; }
   .admin-panel {
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    padding: 26px; width: 100%; max-width: 480px; box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    padding: 30px; width: 100%; max-width: 540px; box-shadow: 0 24px 60px rgba(0,0,0,0.7);
     position: relative; max-height: 90vh; overflow-y: auto;
   }
-  .admin-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--mist); font-size: 1.1rem; cursor: pointer; }
-  .admin-close:hover { color: var(--paper); }
-  .admin-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-  .admin-sub { font-size: 0.78rem; color: var(--mist); margin-bottom: 18px; }
+  .admin-close { position: absolute; top: 18px; right: 18px; background: var(--surface-2); border: 1px solid var(--line); color: var(--mist); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer; transition: all 0.15s; }
+  .admin-close:hover { color: var(--paper); border-color: var(--gold); }
+  .admin-title { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; color: var(--paper); letter-spacing: 0.04em; }
+  .admin-sub { font-size: 0.8rem; color: var(--mist); margin-bottom: 22px; }
+
+  /* Kacheln im Admin Panel (Guidelines, Versand, Zahlung, Kontakt / Sektionen) */
+  .admin-tile {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px; margin-bottom: 16px; transition: border-color 0.2s ease;
+  }
+  .admin-tile:hover { border-color: rgba(216, 174, 93, 0.4); }
+  .admin-tile-header { font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700; color: var(--gold-bright); letter-spacing: 0.06em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
   .admin-field { margin-bottom: 12px; }
-  .admin-field label { display: block; font-size: 0.75rem; color: var(--mist); margin-bottom: 5px; }
+  .admin-field:last-child { margin-bottom: 0; }
+  .admin-field label { display: block; font-size: 0.74rem; font-weight: 600; color: var(--mist); margin-bottom: 5px; letter-spacing: 0.02em; }
   .admin-field input, .admin-field select, .admin-field textarea {
-    width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--line);
-    background: var(--surface-2); color: var(--paper); font-size: 0.9rem; font-family: inherit;
+    width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--ink); color: var(--paper); font-size: 0.88rem; font-family: inherit;
+    transition: border-color 0.15s ease;
   }
   .admin-field input:focus, .admin-field select:focus, .admin-field textarea:focus { outline: none; border-color: var(--gold); }
   
-  /* Fast Status Preset Buttons */
-  .fast-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 12px; }
-  .fast-btn { background: var(--surface-2); border: 1px solid var(--line); color: var(--paper); font-size: 0.74rem; padding: 7px 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: border-color 0.15s; }
-  .fast-btn:hover { border-color: var(--gold); }
+  .fast-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 10px; }
+  .fast-btn { background: var(--surface); border: 1px solid var(--line); color: var(--paper); font-size: 0.74rem; padding: 8px 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.15s; }
+  .fast-btn:hover { border-color: var(--gold); background: #222031; }
 
   .admin-error { font-size: 0.78rem; color: var(--crimson); margin-bottom: 10px; min-height: 1em; }
-  .admin-status-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
+  
+  .admin-status-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.84rem; }
   .toggle {
     width: 46px; height: 26px; border-radius: 20px; background: var(--slate); border: none; cursor: pointer;
     position: relative; transition: background 0.2s ease; flex-shrink: 0;
@@ -275,11 +279,11 @@
   .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); transition: transform 0.2s ease; }
   .toggle.on { background: var(--crimson); }
   .toggle.on::after { transform: translateX(20px); }
-  .admin-btn-row { display: flex; gap: 10px; margin-top: 4px; }
-  .admin-btn-row .btn { padding: 12px 16px; font-size: 0.88rem; }
+
+  .admin-btn-row { display: flex; gap: 10px; margin-top: 18px; }
+  .admin-btn-row .btn { padding: 13px 18px; font-size: 0.88rem; }
   
-  .stats-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
-  .stats-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .stats-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.84rem; }
   .stats-row:last-child { margin-bottom: 0; }
   .stats-val { font-weight: 700; color: var(--gold-bright); }
 
@@ -319,7 +323,6 @@
 
   <div class="container">
 
-    <!-- Top-Hit im Stream / Pull des Tages -->
     <div class="tophit-banner" id="topHitBanner" style="display:none;">
       <div class="tophit-thumb">
         <img id="topHitImg" src="JQ MAGIC_ALBUM.png" alt="Top Hit" onerror="this.src='JQ MAGIC_ALBUM.png';">
@@ -363,13 +366,11 @@
       </div>
     </div>
 
-    <!-- Top 3 Community-Highlights -->
     <div class="section" id="top3Section" style="display:none;">
       <h3 style="margin-bottom: 14px; font-size: 0.95rem;">⭐ Top 3 Community-Favoriten</h3>
       <div class="top3-grid" id="top3Container"></div>
     </div>
 
-    <!-- Community Umfrage Widget -->
     <div class="poll-box" id="pollBox" style="display:none;">
       <div class="poll-title">
         <span>📊 Community-Umfrage:</span>
@@ -379,7 +380,6 @@
       <div class="poll-total" id="pollTotalVotes">0 Stimmen insgesamt</div>
     </div>
 
-    <!-- Album -->
     <div class="section">
       <div class="section-header">
         <div class="album-cover" id="mainAlbumCover">
@@ -394,7 +394,6 @@
 
       <div class="track-note" id="trackNoteText">▶ Vorschau abspielen · Klick auf den Balken zum Springen · Vinyl-Rotation aktiv</div>
 
-      <!-- Tracks 01 bis 10 -->
       <div class="track" data-track data-title="HIDETSUGU">
         <div class="track-number">01</div>
         <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">
@@ -463,561 +462,422 @@
         <audio src="SHEOLDRED.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="HEXING SQUELCHER">
+      <div class="track" data-track data-title="JIN-GITAXIAS">
         <div class="track-number">05</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="HEXING SQUELCHER abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="JIN-GITAXIAS abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">HEXING SQUELCHER</div>
+          <div class="track-title">JIN-GITAXIAS</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">4:44</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+HEXING+SQUELCHER" target="_blank" rel="noopener" aria-label="HEXING SQUELCHER bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="HEXING SQUELCHER.mp3" preload="none"></audio>
+        <div class="track-time">4:12</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+JIN-GITAXIAS" target="_blank" rel="noopener" aria-label="JIN-GITAXIAS bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="JIN-GITAXIAS.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="EDGAR MARKOV">
+      <div class="track" data-track data-title="URABRASK">
         <div class="track-number">06</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="EDGAR MARKOV abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="URABRASK abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">EDGAR MARKOV</div>
+          <div class="track-title">URABRASK</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:02</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+EDGAR+MARKOV" target="_blank" rel="noopener" aria-label="EDGAR MARKOV bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="EDGAR MARKOV.mp3" preload="none"></audio>
+        <div class="track-time">3:45</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+URABRASK" target="_blank" rel="noopener" aria-label="URABRASK bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="URABRASK.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="NAZGÛL">
+      <div class="track" data-track data-title="ATRAXA">
         <div class="track-number">07</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="NAZGÛL abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="ATRAXA abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">NAZGÛL</div>
+          <div class="track-title">ATRAXA</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">2:58</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+NAZGUL" target="_blank" rel="noopener" aria-label="NAZGÛL bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="NAZGÛL.mp3" preload="none"></audio>
+        <div class="track-time">4:05</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+ATRAXA" target="_blank" rel="noopener" aria-label="ATRAXA bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="ATRAXA.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="BUSTER SWORD">
+      <div class="track" data-track data-title="THE GATHERING">
         <div class="track-number">08</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="BUSTER SWORD abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="THE GATHERING abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">BUSTER SWORD</div>
+          <div class="track-title">THE GATHERING</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:39</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+BUSTER+SWORD" target="_blank" rel="noopener" aria-label="BUSTER SWORD bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="BUSTER SWORD.mp3" preload="none"></audio>
+        <div class="track-time">4:20</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" aria-label="THE GATHERING bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="THE GATHERING.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="LUMRA">
+      <div class="track" data-track data-title="KRENKO">
         <div class="track-number">09</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="LUMRA abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="KRENKO abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">LUMRA</div>
+          <div class="track-title">KRENKO</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">4:53</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+LUMRA" target="_blank" rel="noopener" aria-label="LUMRA bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="LUMRA.mp3" preload="none"></audio>
+        <div class="track-time">3:28</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+KRENKO" target="_blank" rel="noopener" aria-label="KRENKO bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="KRENKO.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track data-title="CYCLONIC RIFT">
+      <div class="track" data-track data-title="URZA">
         <div class="track-number">10</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="CYCLONIC RIFT abspielen">
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="URZA abspielen">
           <span class="play-icon">▶</span>
           <span class="eq-bars"><span></span><span></span><span></span></span>
         </button>
         <div class="track-info">
-          <div class="track-title">CYCLONIC RIFT</div>
+          <div class="track-title">URZA</div>
           <div class="track-artist">JQ MAGIC</div>
           <div class="track-error-msg">Datei nicht gefunden</div>
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">2:50</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+CYCLONIC+RIFT" target="_blank" rel="noopener" aria-label="CYCLONIC RIFT bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="CYCLONIC RIFT.mp3" preload="none"></audio>
+        <div class="track-time">4:45</div>
+        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+URZA" target="_blank" rel="noopener" aria-label="URZA bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <audio src="URZA.mp3" preload="none"></audio>
       </div>
-
-      <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-spotify btn-full what-link track-click-stat" data-key="spotify" style="margin-top: 18px;">
-        Ganzes Album auf Spotify
-      </a>
     </div>
 
-    <!-- Links -->
     <div class="section">
-      <h3 style="margin-bottom: 16px;">Links</h3>
-      <div class="link-list">
-        <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="whatnot">
-          Whatnot Profil &amp; Shop
+      <h3 style="margin-bottom: 14px; font-size: 0.95rem;">🎧 Das Album auf Streaming-Diensten</h3>
+      <div style="display:flex; flex-direction:column; gap:11px;">
+        <a href="https://open.spotify.com/album/3XWl92yK2UqX3sT1tUaR5u" target="_blank" rel="noopener" class="btn btn-spotify btn-full track-click-stat" data-key="spotify">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.599-.12-.42.18-.78.6-.9 4.56-1.08 8.52-.66 11.76 1.38.36.18.48.66.24 1.02zm1.44-3.84c-.301.48-.9.66-1.38.36-3.24-1.98-8.16-2.58-11.94-1.44-.54.18-1.14-.12-1.32-.66-.18-.54.12-1.14.66-1.32 4.2-1.26 9.6-.6 13.38 1.62.48.3.66.9.3 1.38zm.12-4.02C15.24 7.2 8.82 7.02 5.1 8.16c-.66.18-1.38-.18-1.56-.84-.18-.66.18-1.38.84-1.56 4.32-1.32 11.4-1.14 15.66 1.38.6.36.78 1.14.42 1.74-.36.6-1.14.78-1.74.42z"/></svg>
+          Auf Spotify anhören
         </a>
-        <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="spotify">
-          Spotify – JQ MAGIC
-        </a>
-        <a href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="ytmusic">
-          YouTube Music – JQ MAGIC
+        <a href="https://music.youtube.com/playlist?list=OLAK5uy_k..." target="_blank" rel="noopener" class="btn btn-outline btn-full track-click-stat" data-key="ytmusic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Auf YouTube Music
         </a>
       </div>
     </div>
+
+    <footer>
+      <div>© <span id="currentYear">2026</span> JQ Magic · Alle Rechte vorbehalten.</div>
+      <span class="fine-print admin-trigger" id="adminTrigger">Admin Panel öffnen</span>
+    </footer>
 
   </div>
 
-  <footer>
-    <span class="admin-trigger" id="adminTrigger">© 2026 JQ Magic · Jakob</span>
-    <span class="fine-print">Nicht offiziell mit Whatnot verbunden</span>
-  </footer>
-
-  <!-- Admin-Overlay -->
   <div class="admin-overlay" id="adminOverlay">
     <div class="admin-panel">
-      <button class="admin-close" id="adminClose" aria-label="Schließen">✕</button>
+      <button class="admin-close" id="adminClose">✕</button>
+      <div class="admin-title">Admin Steuerung</div>
+      <div class="admin-sub">Live-Stream, Highlights & Widgets konfigurieren</div>
 
-      <div id="adminLoggedOut">
-        <div class="admin-title">Admin-Login</div>
-        <div class="admin-sub">Passwort eingeben</div>
-        <div class="admin-field">
-          <label for="adminPassword">Passwort</label>
-          <input type="password" id="adminPassword">
-        </div>
-        <div class="admin-error" id="adminError"></div>
-        <button class="btn btn-live btn-full" data-live="true" style="margin-top:0;" id="adminLoginBtn">Einloggen</button>
-      </div>
+      <div class="admin-error" id="adminError"></div>
 
-      <div id="adminLoggedIn" style="display:none;">
-        <div class="admin-title">Admin-Steuerung</div>
-        <div class="admin-sub" style="margin-bottom: 14px;">Erfolgreich angemeldet</div>
-
+      <div class="admin-tile">
+        <div class="admin-tile-header">🔴 Stream & Status</div>
         <div class="admin-status-row">
-          <span>Live (Ja / Nein)</span>
-          <button class="toggle" id="adminLiveToggle" aria-label="Live umschalten"></button>
+          <span>Live-Status umschalten</span>
+          <button class="toggle" id="adminLiveToggle" aria-label="Live Status umschalten"></button>
         </div>
-
-        <div class="admin-field">
-          <label>Fast-Status Buttons (Hotkeys / Schnellwahl)</label>
-          <div class="fast-buttons">
-            <button class="fast-btn" type="button" onclick="setFastStatus('Wir sind LIVE! 🔥', 'Zum Live-Stream →', true)">🔥 Live starten</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('GLEICH GEHTS LOS!', 'Stream-Details / Kanal →', false)">⏳ Gleich gehts los</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('SONNTAG BREAKS HEUTE', 'Zum Whatnot-Kanal →', false)">✨ Sonntag Breaks</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('PAUSE / OFFLINE', 'Zum Whatnot-Kanal →', false)">💤 Offline</button>
-          </div>
+        <div class="fast-buttons">
+          <button class="fast-btn" type="button" onclick="setPresetStatus(true, 'LIVE · SONNTAG BREAKS ✨')">Preset: Live aktiv</button>
+          <button class="fast-btn" type="button" onclick="setPresetStatus(false, 'GLEICH GEHT ES LOS…')">Preset: Offline / Bald</button>
         </div>
-
         <div class="admin-field">
-          <label for="adminStatusTextCustom">Status-Überschrift (z.B. JETZT LIVE)</label>
-          <input type="text" id="adminStatusTextCustom" placeholder="z. B. JETZT LIVE">
+          <label for="adminStatusTextCustom">Individueller Status-Text</label>
+          <input type="text" id="adminStatusTextCustom" placeholder="z. B. GLEICH GEHT ES LOS…">
         </div>
-
-        <div class="admin-field">
-          <label for="adminViewers">Zuschauerzahl (leer lassen = ausblenden)</label>
-          <input type="number" min="0" id="adminViewers" placeholder="z. B. 13">
+        <div class="admin-field" style="margin-top:10px;">
+          <label for="adminViewers">Zuschauer-Zahl (leer lassen = ausgeblendet)</label>
+          <input type="number" id="adminViewers" placeholder="z. B. 42">
         </div>
-
-        <div class="admin-field">
-          <label for="adminCountdown">Nächster Stream Countdown (Datum &amp; Uhrzeit)</label>
+        <div class="admin-field" style="margin-top:10px;">
+          <label for="adminCountdown">Countdown Zielzeit (ISO Format oder leer)</label>
           <input type="datetime-local" id="adminCountdown">
         </div>
+        <div class="admin-field" style="margin-top:10px;">
+          <label for="adminSnippetLen">Audio-Vorschau Länge (Sekunden)</label>
+          <input type="number" id="adminSnippetLen" min="5" max="120" value="30">
+        </div>
+      </div>
 
-        <div class="admin-field">
-          <label for="adminSnippetLen">Snippet-Länge in Sekunden (Standard: 30)</label>
-          <input type="number" min="5" max="120" id="adminSnippetLen" placeholder="30">
+      <div class="admin-tile">
+        <div class="admin-tile-header">⭐ Top-Hit im Stream</div>
+        <div class="admin-status-row">
+          <span>Banner aktivieren</span>
+          <button class="toggle" id="adminTopHitToggle" aria-label="Top-Hit Banner umschalten"></button>
         </div>
+        <div class="admin-field">
+          <label for="adminTopHitTitle">Titel / Name</label>
+          <input type="text" id="adminTopHitTitle" placeholder="z. B. Black Lotus Foil Pull">
+        </div>
+        <div class="admin-field" style="margin-top:10px;">
+          <label for="adminTopHitDesc">Beschreibung</label>
+          <input type="text" id="adminTopHitDesc" placeholder="z. B. Masterpiece aus Double Masters 2022">
+        </div>
+        <div class="admin-field" style="margin-top:10px;">
+          <label for="adminTopHitImg">Bild-URL (z. B. JQ MAGIC_ALBUM.png)</label>
+          <input type="text" id="adminTopHitImg" placeholder="JQ MAGIC_ALBUM.png">
+        </div>
+      </div>
 
-        <!-- Top-Hit im Stream konfigurieren -->
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top-Hit im Stream / Pull des Tages</div>
-        <div class="admin-status-row" style="margin-bottom: 8px;">
-          <span>Top-Hit Banner anzeigen</span>
-          <button class="toggle" id="adminTopHitToggle" aria-label="Top-Hit umschalten"></button>
-        </div>
+      <div class="admin-tile">
+        <div class="admin-tile-header">🏆 Top 3 Community-Favoriten</div>
         <div class="admin-field">
-          <label for="adminTopHitTitle">Titel / Name des Pulls</label>
-          <input type="text" id="adminTopHitTitle" placeholder="z. B. Sheoldred, the Apocalypse (Foil)">
+          <label>Favorit 1 (Track / Pull)</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="top1Track" placeholder="Titel 1" style="flex:2;">
+            <input type="text" id="top1Img" placeholder="Bild-URL" style="flex:3;">
+          </div>
         </div>
-        <div class="admin-field">
-          <label for="adminTopHitDesc">Beschreibung / Zitat</label>
-          <input type="text" id="adminTopHitDesc" placeholder="z. B. Aus dem XL-Break gezogen von @User!">
+        <div class="admin-field" style="margin-top:8px;">
+          <label>Favorit 2 (Track / Pull)</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="top2Track" placeholder="Titel 2" style="flex:2;">
+            <input type="text" id="top2Img" placeholder="Bild-URL" style="flex:3;">
+          </div>
         </div>
-        <div class="admin-field">
-          <label for="adminTopHitImg">Bild-URL / Dateiname</label>
-          <input type="text" id="adminTopHitImg" placeholder="z. B. sheoldred.jpg">
+        <div class="admin-field" style="margin-top:8px;">
+          <label>Favorit 3 (Track / Pull)</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="top3Track" placeholder="Titel 3" style="flex:2;">
+            <input type="text" id="top3Img" placeholder="Bild-URL" style="flex:3;">
+          </div>
         </div>
+      </div>
 
-        <!-- Top 3 Favoriten -->
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top 3 Community-Favoriten</div>
-        <div class="admin-field">
-          <label>Platz 1</label>
-          <select id="top1Track" style="margin-bottom:6px;"></select>
-          <input type="text" id="top1Img" placeholder="Bild-URL">
+      <div class="admin-tile">
+        <div class="admin-tile-header">📊 Community-Umfrage</div>
+        <div class="admin-status-row">
+          <span>Umfrage aktivieren</span>
+          <button class="toggle" id="adminPollToggle" aria-label="Umfrage umschalten"></button>
         </div>
         <div class="admin-field">
-          <label>Platz 2</label>
-          <select id="top2Track" style="margin-bottom:6px;"></select>
-          <input type="text" id="top2Img" placeholder="Bild-URL">
+          <label for="adminPollQuestion">Frage</label>
+          <input type="text" id="adminPollQuestion" placeholder="z. B. Welches Set brechen wir als Nächstes?">
         </div>
-        <div class="admin-field">
-          <label>Platz 3</label>
-          <select id="top3Track" style="margin-bottom:6px;"></select>
-          <input type="text" id="top3Img" placeholder="Bild-URL">
-        </div>
-
-        <!-- Community Umfrage konfigurieren -->
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">📊 Community-Umfrage verwalten</div>
-        <div class="admin-status-row" style="margin-bottom: 8px;">
-          <span>Umfrage aktiv anzeigen</span>
-          <button class="toggle" id="adminPollActiveToggle" aria-label="Umfrage aktiv"></button>
-        </div>
-        <div class="admin-field">
-          <label for="adminPollQuestion">Umfrage-Frage</label>
-          <input type="text" id="adminPollQuestion" placeholder="z. B. Welcher Track ist dein Favorit?">
-        </div>
-        <div class="admin-field">
+        <div class="admin-field" style="margin-top:10px;">
           <label>Antwort-Optionen</label>
           <div id="adminPollOptionsEditor"></div>
-          <button class="btn btn-outline btn-full" type="button" id="addPollOptBtn" style="margin-top: 6px; padding: 8px;">+ Option hinzufügen</button>
         </div>
+      </div>
 
-        <div class="stats-box" style="margin-top: 14px;">
-          <div class="stats-row">
-            <span>Seitenbesuche:</span>
-            <span class="stats-val" id="statVisits">0</span>
-          </div>
-          <div class="stats-row">
-            <span>Total Klicks:</span>
-            <span class="stats-val" id="statClicks">0</span>
-          </div>
-          <div class="stats-row" style="margin-top: 6px; font-size: 0.8rem; color: var(--mist);">
-            <span>Whatnot Klicks:</span>
-            <span class="stats-val" id="statWhatnot">0</span>
-          </div>
-          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);">
-            <span>Spotify Klicks:</span>
-            <span class="stats-val" id="statSpotify">0</span>
-          </div>
-          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);">
-            <span>YouTube Music Klicks:</span>
-            <span class="stats-val" id="statYtmusic">0</span>
-          </div>
-        </div>
+      <div class="admin-tile">
+        <div class="admin-tile-header">📈 Live-Statistiken</div>
+        <div class="stats-row"><span>Whatnot Klicks:</span><span class="stats-val" id="statWhatnot">0</span></div>
+        <div class="stats-row"><span>Spotify Klicks:</span><span class="stats-val" id="statSpotify">0</span></div>
+        <div class="stats-row"><span>YouTube Music Klicks:</span><span class="stats-val" id="statYtmusic">0</span></div>
+      </div>
 
-        <div class="admin-error" id="adminSaveMsg"></div>
+      <div class="admin-field" style="margin-top:10px;">
+        <label for="adminSecretInput">Admin Passwort / Secret Key</label>
+        <input type="password" id="adminSecretInput" placeholder="Passwort eingeben...">
+      </div>
 
-        <div class="admin-btn-row">
-          <button class="btn btn-spotify" style="flex:1;" id="adminSaveBtn">Speichern</button>
-          <button class="btn btn-outline" style="flex:1;" id="adminLogoutBtn">Ausloggen</button>
-        </div>
+      <div id="adminSaveMsg" style="font-size: 0.8rem; text-align: center; margin-top: 10px; min-height: 1.2em;"></div>
+
+      <div class="admin-btn-row">
+        <button class="btn btn-outline btn-full" type="button" id="adminCancelBtn">Schließen</button>
+        <button class="btn btn-live btn-full" type="button" id="adminSaveBtn" style="margin-top:0;">Änderungen speichern</button>
       </div>
     </div>
   </div>
 
-  <script>
-    let currentAudio = null;
-    let currentBtn = null;
-    let currentFill = null;
-    let animFrame = null;
-    let stopTimer = null;
-    let maxSnippetDuration = 30;
-    let globalVolumeVal = 1.0;
-
-    const trackTitlesList = Array.from(document.querySelectorAll('[data-track]')).map(el => el.dataset.title);
-    const mainAlbumCover = document.getElementById('mainAlbumCover');
-    const globalVolumeInput = document.getElementById('globalVolume');
-
-    globalVolumeInput.addEventListener('input', (e) => {
-      globalVolumeVal = parseFloat(e.target.value);
-      if (currentAudio) {
-        currentAudio.volume = globalVolumeVal;
-      }
-    });
-
-    function resetTrackVisuals(btn) {
-      btn.classList.remove('playing');
-    }
-
-    function stopCurrent() {
-      if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
-      if (currentBtn) resetTrackVisuals(currentBtn);
-      if (currentFill) currentFill.style.width = '0%';
-      mainAlbumCover.classList.remove('playing-vinyl');
-      cancelAnimationFrame(animFrame);
-      clearTimeout(stopTimer);
-      currentAudio = null; currentBtn = null; currentFill = null;
-    }
-
-    function updateProgress() {
-      if (!currentAudio || currentAudio.paused) return;
-      const percent = Math.min((currentAudio.currentTime / maxSnippetDuration) * 100, 100);
-      if (currentFill) currentFill.style.width = percent + '%';
-      if (currentAudio.currentTime < maxSnippetDuration) {
-        animFrame = requestAnimationFrame(updateProgress);
-      } else {
-        stopCurrent();
-      }
-    }
-
-    async function togglePlay(btn) {
-      const trackEl = btn.closest('[data-track]');
-      const audio = trackEl.querySelector('audio');
-      const fill = trackEl.querySelector('.progress-fill');
-      if (btn.classList.contains('errored')) return;
-
-      if (currentBtn === btn && currentAudio && !currentAudio.paused) { stopCurrent(); return; }
-
-      stopCurrent();
-      trackEl.classList.remove('has-error');
-      btn.disabled = true;
-
-      try {
-        audio.currentTime = 0;
-        audio.volume = globalVolumeVal;
-        await audio.play();
-        btn.disabled = false;
-        currentAudio = audio; currentBtn = btn; currentFill = fill;
-        btn.classList.add('playing');
-        mainAlbumCover.classList.add('playing-vinyl');
-        updateProgress();
-        stopTimer = setTimeout(stopCurrent, maxSnippetDuration * 1000);
-      } catch (err) {
-        btn.disabled = false;
-        btn.classList.add('errored');
-        trackEl.classList.add('has-error');
-        setTimeout(() => {
-          btn.classList.remove('errored');
-          resetTrackVisuals(btn);
-          trackEl.classList.remove('has-error');
-        }, 2500);
-      }
-    }
-
-    function seek(evt, wrapEl) {
-      const trackEl = wrapEl.closest('[data-track]');
-      const audio = trackEl.querySelector('audio');
-      if (currentAudio !== audio) return;
-      const rect = wrapEl.getBoundingClientRect();
-      const ratio = Math.min(Math.max((evt.clientX - rect.left) / rect.width, 0), 1);
-      audio.currentTime = ratio * maxSnippetDuration;
-      if (currentFill) currentFill.style.width = (ratio * 100) + '%';
-    }
-
-    // Logo Click Easter Egg (Triple click for Admin hint)
-    let logoClicks = 0;
-    document.getElementById('logoClick').addEventListener('click', () => {
-      logoClicks++;
-      if (logoClicks === 3) {
-        alert('Tipp: Klicke unten im Footer auf den Copyright-Text (3x), um das Admin-Panel zu öffnen.');
-        logoClicks = 0;
-      }
-      setTimeout(() => logoClicks = 0, 1000);
-    });
-
-    document.getElementById('shareBtnTop').addEventListener('click', () => {
-      if (navigator.share) {
-        navigator.share({
-          title: 'JQ Magic | THE GATHERING',
-          text: 'Schau dir JQ Magic Live Breaks & das Album an!',
-          url: window.location.href
-        }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link in die Zwischenablage kopiert!');
-      }
-    });
-
-    // Populate Select elements in Admin
-    ['top1Track', 'top2Track', 'top3Track'].forEach(id => {
-      const sel = document.getElementById(id);
-      trackTitlesList.forEach(t => {
-        const opt = document.createElement('option');
-        opt.value = t;
-        opt.textContent = t;
-        sel.appendChild(opt);
-      });
-    });
-
-    function setFastStatus(text, btnText, isLive) {
-      document.getElementById('adminLiveToggle').classList.toggle('on', isLive);
-      // We store temporary flag or let admin toggle handle it
-      window.tempFastLive = isLive;
-      window.tempFastText = text;
-      alert(`Schnell-Status übernommen: "${text}" (Klicke unten auf Speichern).`);
-    }
-  </script>
-
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getDatabase, ref, onValue, set, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue, set, update, runTransaction } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyCAh2AsbxLqU2Gx9s0YbZo8PR4fpG3WDw8",
-      authDomain: "professorfilou-e8eea.firebaseapp.com",
-      databaseURL: "https://professorfilou-e8eea-default-rtdb.firebaseio.com",
-      projectId: "professorfilou-e8eea",
-      storageBucket: "professorfilou-e8eea.firebasestorage.app",
-      messagingSenderId: "280418084891",
-      appId: "1:280418084891:web:1750e554b152810033f0be"
+      databaseURL: "https://jq-magic-default-rtdb.europe-west1.firebasedatabase.app/"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const statusRef = ref(db, "jqmagic/status");
-    const passwordRef = ref(db, "jqmagic/jqmagic");
-    const statsRef = ref(db, "jqmagic/stats");
-    const pollVotesRef = ref(db, "jqmagic/pollVotes");
 
-    if (!sessionStorage.getItem('jq_visited')) {
-      sessionStorage.setItem('jq_visited', 'true');
-      runTransaction(statsRef, (currentStats) => {
-        if (!currentStats) currentStats = { visits: 0, clicks: 0, whatnot: 0, spotify: 0, ytmusic: 0 };
-        currentStats.visits = (currentStats.visits || 0) + 1;
-        return currentStats;
-      });
-    }
+    // Globale Player Variablen
+    let currentAudio = null;
+    let currentPlayBtn = null;
+    let progressInterval = null;
+    let snippetDuration = 30;
 
-    document.querySelectorAll('.track-click-stat').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const key = link.dataset.key;
-        runTransaction(statsRef, (currentStats) => {
-          if (!currentStats) currentStats = { visits: 0, clicks: 0, whatnot: 0, spotify: 0, ytmusic: 0 };
-          currentStats.clicks = (currentStats.clicks || 0) + 1;
-          if (key && currentStats[key] !== undefined) {
-            currentStats[key] = (currentStats[key] || 0) + 1;
-          }
-          return currentStats;
-        });
-      });
+    const globalVolume = document.getElementById('globalVolume');
+    globalVolume.addEventListener('input', (e) => {
+      if (currentAudio) {
+        currentAudio.volume = e.target.value;
+      }
     });
 
-    const liveCard = document.getElementById('liveCard');
-    const liveBtn = document.getElementById('liveBtn');
-    const liveStatusText = document.getElementById('liveStatusText');
-    const liveViewers = document.getElementById('liveViewers');
-    const snippetSubText = document.getElementById('snippetSubText');
-    const top3Section = document.getElementById('top3Section');
-    const top3Container = document.getElementById('top3Container');
-    const topHitBanner = document.getElementById('topHitBanner');
-    const topHitTitle = document.getElementById('topHitTitle');
-    const topHitDesc = document.getElementById('topHitDesc');
-    const topHitImg = document.getElementById('topHitImg');
-    const pollBox = document.getElementById('pollBox');
-    const pollQuestionText = document.getElementById('pollQuestionText');
-    const pollOptionsContainer = document.getElementById('pollOptionsContainer');
-    const pollTotalVotes = document.getElementById('pollTotalVotes');
+    window.togglePlay = function(btn) {
+      const trackEl = btn.closest('.track');
+      const audio = trackEl.querySelector('audio');
+      const fillEl = trackEl.querySelector('.progress-fill');
 
-    let countdownInterval = null;
-
-    // Listen to Poll Votes
-    onValue(pollVotesRef, (snap) => {
-      window.currentPollVotes = snap.val() || {};
-      if (window.latestPollData) renderPoll(window.latestPollData, window.currentPollVotes);
-    });
-
-    function renderPoll(pollData, votesData) {
-      if (!pollData || !pollData.active || !pollData.options || pollData.options.length === 0) {
-        pollBox.style.display = 'none';
+      if (!audio.getAttribute('src') || audio.getAttribute('src') === '') {
+        trackEl.classList.add('has-error');
+        btn.classList.add('errored');
+        btn.disabled = true;
         return;
       }
-      pollBox.style.display = 'block';
-      pollQuestionText.textContent = pollData.question || 'Stimme ab:';
-      pollOptionsContainer.innerHTML = '';
 
-      let totalVotes = 0;
-      pollData.options.forEach((opt, idx) => {
-        const count = votesData[idx] || 0;
-        totalVotes += count;
-      });
-      pollTotalVotes.textContent = `${totalVotes} Stimme${totalVotes === 1 ? '' : 'n'} insgesamt`;
-
-      pollData.options.forEach((opt, idx) => {
-        const count = votesData[idx] || 0;
-        const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-        const btn = document.createElement('button');
-        btn.className = 'poll-option-btn';
-        btn.innerHTML = `
-          <div class="poll-bar" style="width: ${percent}%;"></div>
-          <span>${opt}</span>
-          <span class="poll-votes">${count} (${percent}%)</span>
-        `;
-        btn.addEventListener('click', () => {
-          const votedKey = `voted_poll_${pollData.question}`;
-          if (localStorage.getItem(votedKey)) {
-            alert('Du hast bei dieser Umfrage bereits abgestimmt!');
-            return;
-          }
-          runTransaction(pollVotesRef, (currentVotes) => {
-            if (!currentVotes) currentVotes = {};
-            currentVotes[idx] = (currentVotes[idx] || 0) + 1;
-            return currentVotes;
-          });
-          localStorage.setItem(votedKey, 'true');
-          alert('Danke für deine Stimme!');
-        });
-        pollOptionsContainer.appendChild(btn);
-      });
-    }
-
-    onValue(statusRef, (snap) => {
-      const data = snap.val() || {};
-      const isLive = !!data.live;
-      
-      if (data.snippetLen) {
-        window.maxSnippetDuration = Number(data.snippetLen);
-        snippetSubText.textContent = `JQ MAGIC · ${window.maxSnippetDuration} Sekunden Vorschau`;
+      if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        if (currentPlayBtn) {
+          currentPlayBtn.classList.remove('playing');
+          currentPlayBtn.querySelector('.play-icon').textContent = '▶';
+        }
+        document.querySelectorAll('.album-cover').forEach(ac => ac.classList.remove('playing-vinyl'));
+        clearInterval(progressInterval);
       }
 
-      // Render Top Hit Banner
-      if (data.topHit && data.topHit.active && data.topHit.title) {
+      if (audio.paused) {
+        audio.volume = globalVolume.value;
+        audio.play().then(() => {
+          currentAudio = audio;
+          currentPlayBtn = btn;
+          btn.classList.add('playing');
+          document.querySelectorAll('.album-cover').forEach(ac => ac.classList.add('playing-vinyl'));
+          
+          clearInterval(progressInterval);
+          progressInterval = setInterval(() => {
+            if (audio.ended || audio.paused) {
+              clearInterval(progressInterval);
+              return;
+            }
+            if (audio.currentTime >= snippetDuration) {
+              audio.pause();
+              audio.currentTime = 0;
+              btn.classList.remove('playing');
+              document.querySelectorAll('.album-cover').forEach(ac => ac.classList.remove('playing-vinyl'));
+              fillEl.style.width = '0%';
+              clearInterval(progressInterval);
+              return;
+            }
+            const pct = (audio.currentTime / snippetDuration) * 100;
+            fillEl.style.width = pct + '%';
+          }, 100);
+        }).catch(err => {
+          console.error("Audio playback error:", err);
+          trackEl.classList.add('has-error');
+          btn.classList.add('errored');
+        });
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        btn.classList.remove('playing');
+        document.querySelectorAll('.album-cover').forEach(ac => ac.classList.remove('playing-vinyl'));
+        fillEl.style.width = '0%';
+        clearInterval(progressInterval);
+        currentAudio = null;
+        currentPlayBtn = null;
+      }
+
+      audio.onended = () => {
+        btn.classList.remove('playing');
+        document.querySelectorAll('.album-cover').forEach(ac => ac.classList.remove('playing-vinyl'));
+        fillEl.style.width = '0%';
+        clearInterval(progressInterval);
+        currentAudio = null;
+        currentPlayBtn = null;
+      };
+    };
+
+    window.seek = function(event, wrap) {
+      const trackEl = wrap.closest('.track');
+      const audio = trackEl.querySelector('audio');
+      const fillEl = trackEl.querySelector('.progress-fill');
+      const rect = wrap.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const width = rect.width;
+      const pct = Math.max(0, Math.min(1, clickX / width));
+
+      if (audio && audio.duration) {
+        audio.currentTime = pct * snippetDuration;
+        fillEl.style.width = (pct * 100) + '%';
+      }
+    };
+
+    // Firebase Data Sync & Realtime UI Updates
+    const statusRef = ref(db, 'status');
+    const statsRef = ref(db, 'stats');
+
+    onValue(statusRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      const isLive = data.live === true;
+      const liveCard = document.getElementById('liveCard');
+      const liveBtn = document.getElementById('liveBtn');
+      const liveStatusText = document.getElementById('liveStatusText');
+      const liveViewers = document.getElementById('liveViewers');
+
+      liveCard.setAttribute('data-live', isLive ? 'true' : 'false');
+      liveBtn.setAttribute('data-live', isLive ? 'true' : 'false');
+
+      if (isLive) {
+        liveStatusText.textContent = data.statusTextCustom || 'LIVE · JETZT IM STREAM';
+        liveBtn.textContent = 'Zum Live-Stream auf Whatnot →';
+      } else {
+        liveStatusText.textContent = data.statusTextCustom || 'OFFLINE · NÄCHSTER STREAM BALD';
+        liveBtn.textContent = 'Zum Whatnot-Kanal →';
+      }
+
+      if (data.viewers && data.viewers > 0) {
+        liveViewers.style.display = 'block';
+        liveViewers.textContent = `👁 ${data.viewers} Zuschauer`;
+      } else {
+        liveViewers.style.display = 'none';
+      }
+
+      if (data.snippetLen) {
+        snippetDuration = Number(data.snippetLen);
+        const sub = document.getElementById('snippetSubText');
+        if (sub) sub.textContent = `JQ MAGIC · ${snippetDuration} Sekunden Vorschau`;
+      }
+
+      // Top Hit Banner
+      const topHitBanner = document.getElementById('topHitBanner');
+      if (data.topHit && data.topHit.active) {
         topHitBanner.style.display = 'flex';
-        topHitTitle.textContent = data.topHit.title;
-        topHitDesc.textContent = data.topHit.desc || '';
-        if (data.topHit.img) topHitImg.src = data.topHit.img;
+        document.getElementById('topHitTitle').textContent = data.topHit.title || 'Top Hit';
+        document.getElementById('topHitDesc').textContent = data.topHit.desc || '';
+        if (data.topHit.img) document.getElementById('topHitImg').src = data.topHit.img;
       } else {
         topHitBanner.style.display = 'none';
       }
 
-      // Render Poll
-      window.latestPollData = data.poll;
-      renderPoll(data.poll, window.currentPollVotes || {});
-
-      // Render Top 3 if configured
-      if (data.top3 && Array.isArray(data.top3) && data.top3.some(item => item && item.track)) {
+      // Top 3 Sektion
+      const top3Section = document.getElementById('top3Section');
+      const top3Container = document.getElementById('top3Container');
+      if (data.top3 && Array.isArray(data.top3) && data.top3.length > 0) {
         top3Section.style.display = 'block';
         top3Container.innerHTML = '';
-        data.top3.forEach((item, index) => {
-          if (!item || !item.track) return;
+        data.top3.forEach((item, idx) => {
+          if (!item.track) return;
           const card = document.createElement('div');
           card.className = 'top3-card';
           card.innerHTML = `
-            <div class="top3-badge">#${index + 1}</div>
-            <div class="top3-img-wrap">
-              <img src="${item.img || 'JQ MAGIC_ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC_ALBUM.png';">
-            </div>
+            <div class="top3-badge">#${idx + 1} HIGHLIGHT</div>
+            <div class="top3-img-wrap"><img src="${item.img || 'JQ MAGIC_ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC_ALBUM.png';"></div>
             <div class="top3-title">${item.track}</div>
           `;
           top3Container.appendChild(card);
@@ -1026,253 +886,217 @@
         top3Section.style.display = 'none';
       }
 
-      liveCard.dataset.live = String(isLive);
-      liveBtn.dataset.live = String(isLive);
-
-      if (isLive) {
-        if (countdownInterval) clearInterval(countdownInterval);
-        liveStatusText.textContent = data.statusTextCustom || 'JETZT LIVE';
-        liveBtn.textContent = 'Zum Live-Stream →';
-        if (data.viewers !== undefined && data.viewers !== null && data.viewers !== '') {
-          liveViewers.textContent = data.viewers + ' Zuschauer';
-          liveViewers.style.display = 'inline-block';
-        } else {
-          liveViewers.style.display = 'none';
-        }
+      // Umfrage Widget
+      const pollBox = document.getElementById('pollBox');
+      if (data.poll && data.poll.active && data.poll.question && data.poll.options) {
+        pollBox.style.display = 'block';
+        document.getElementById('pollQuestionText').textContent = data.poll.question;
+        renderPollOptions(data.poll.options, data.poll.votes || {});
       } else {
-        liveViewers.style.display = 'none';
-        if (data.countdownTime) {
-          const targetTime = new Date(data.countdownTime).getTime();
-          if (countdownInterval) clearInterval(countdownInterval);
-          
-          const updateTimer = () => {
-            const now = new Date().getTime();
-            const diff = targetTime - now;
-            if (diff > 0) {
-              const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-              const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-              const secs = Math.floor((diff % (1000 * 60)) / 1000);
-              
-              let timeStr = `${hours}h ${mins}m ${secs}s`;
-              if (days > 0) timeStr = `${days}d ${timeStr}`;
-              liveStatusText.textContent = `NÄCHSTER STREAM IN: ${timeStr}`;
-              liveBtn.textContent = 'Stream-Details / Kanal →';
-            } else {
-              liveStatusText.textContent = data.statusTextCustom || 'NICHT LIVE';
-              liveBtn.textContent = 'Zum Whatnot-Kanal →';
-              clearInterval(countdownInterval);
-            }
-          };
-          updateTimer();
-          countdownInterval = setInterval(updateTimer, 1000);
-        } else {
-          liveStatusText.textContent = data.statusTextCustom || 'NICHT LIVE';
-          liveBtn.textContent = 'Zum Whatnot-Kanal →';
+        pollBox.style.display = 'none';
+      }
+
+      // Admin Form sync
+      if (document.getElementById('adminOverlay').classList.contains('open')) {
+        document.getElementById('adminLiveToggle').classList.toggle('on', isLive);
+        document.getElementById('adminStatusTextCustom').value = data.statusTextCustom || '';
+        document.getElementById('adminViewers').value = data.viewers || '';
+        document.getElementById('adminSnippetLen').value = data.snippetLen || 30;
+        if (data.topHit) {
+          document.getElementById('adminTopHitToggle').classList.toggle('on', !!data.topHit.active);
+          document.getElementById('adminTopHitTitle').value = data.topHit.title || '';
+          document.getElementById('adminTopHitDesc').value = data.topHit.desc || '';
+          document.getElementById('adminTopHitImg').value = data.topHit.img || '';
+        }
+        if (data.top3) {
+          if (data.top3[0]) { document.getElementById('top1Track').value = data.top3[0].track || ''; document.getElementById('top1Img').value = data.top3[0].img || ''; }
+          if (data.top3[1]) { document.getElementById('top2Track').value = data.top3[1].track || ''; document.getElementById('top2Img').value = data.top3[1].img || ''; }
+          if (data.top3[2]) { document.getElementById('top3Track').value = data.top3[2].track || ''; document.getElementById('top3Img').value = data.top3[2].img || ''; }
+        }
+        if (data.poll) {
+          document.getElementById('adminPollToggle').classList.toggle('on', !!data.poll.active);
+          document.getElementById('adminPollQuestion').value = data.poll.question || '';
+          renderPollEditor(data.poll.options || []);
         }
       }
-    }, () => {
-      liveCard.dataset.live = 'false';
-      liveBtn.dataset.live = 'false';
-      liveStatusText.textContent = 'NICHT LIVE';
-      liveBtn.textContent = 'Zum Whatnot-Kanal →';
-      liveViewers.style.display = 'none';
     });
 
-    const overlay = document.getElementById('adminOverlay');
-    const adminTrigger = document.getElementById('adminTrigger');
-    const loggedOutView = document.getElementById('adminLoggedOut');
-    const loggedInView = document.getElementById('adminLoggedIn');
-    const passwordInput = document.getElementById('adminPassword');
-    const adminError = document.getElementById('adminError');
-    const adminLiveToggle = document.getElementById('adminLiveToggle');
-    const adminStatusTextCustom = document.getElementById('adminStatusTextCustom');
-    const adminViewers = document.getElementById('adminViewers');
-    const adminCountdown = document.getElementById('adminCountdown');
-    const adminSnippetLen = document.getElementById('adminSnippetLen');
-    const adminSaveMsg = document.getElementById('adminSaveMsg');
-    
-    const adminTopHitToggle = document.getElementById('adminTopHitToggle');
-    const adminTopHitTitle = document.getElementById('adminTopHitTitle');
-    const adminTopHitDesc = document.getElementById('adminTopHitDesc');
-    const adminTopHitImg = document.getElementById('adminTopHitImg');
-
-    const top1Track = document.getElementById('top1Track');
-    const top1Img = document.getElementById('top1Img');
-    const top2Track = document.getElementById('top2Track');
-    const top2Img = document.getElementById('top2Img');
-    const top3Track = document.getElementById('top3Track');
-    const top3Img = document.getElementById('top3Img');
-
-    const adminPollActiveToggle = document.getElementById('adminPollActiveToggle');
-    const adminPollQuestion = document.getElementById('adminPollQuestion');
-    const adminPollOptionsEditor = document.getElementById('adminPollOptionsEditor');
-    const addPollOptBtn = document.getElementById('addPollOptBtn');
-
-    adminTrigger.addEventListener('click', (e) => {
-      if (e.detail === 3) {
-        overlay.classList.add('open');
-        passwordInput.value = '';
-        adminError.textContent = '';
-      }
+    onValue(statsRef, (snapshot) => {
+      const stats = snapshot.val() || {};
+      document.getElementById('statWhatnot').textContent = stats.whatnot || 0;
+      document.getElementById('statSpotify').textContent = stats.spotify || 0;
+      document.getElementById('statYtmusic').textContent = stats.ytmusic || 0;
     });
 
-    document.getElementById('adminClose').addEventListener('click', () => overlay.classList.remove('open'));
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('open'); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.remove('open'); });
-
-    let toggleState = false;
-    adminLiveToggle.addEventListener('click', () => {
-      toggleState = !toggleState;
-      adminLiveToggle.classList.toggle('on', toggleState);
+    // Statistik Klicks erfassen
+    document.querySelectorAll('.track-click-stat').forEach(el => {
+      el.addEventListener('click', () => {
+        const key = el.getAttribute('data-key');
+        if (key) {
+          runTransaction(ref(db, `stats/${key}`), (current) => (current || 0) + 1);
+        }
+      });
     });
 
-    let topHitToggleState = false;
-    adminTopHitToggle.addEventListener('click', () => {
-      topHitToggleState = !topHitToggleState;
-      adminTopHitToggle.classList.toggle('on', topHitToggleState);
-    });
+    // Umfrage Logik
+    function renderPollOptions(options, votesObj) {
+      const container = document.getElementById('pollOptionsContainer');
+      container.innerHTML = '';
+      let total = 0;
+      Object.values(votesObj).forEach(v => total += Number(v) || 0);
+      document.getElementById('pollTotalVotes').textContent = `${total} Stimmen insgesamt`;
 
-    let pollToggleState = false;
-    adminPollActiveToggle.addEventListener('click', () => {
-      pollToggleState = !pollToggleState;
-      adminPollActiveToggle.classList.toggle('on', pollToggleState);
-    });
-
-    function renderPollEditor(optionsArray) {
-      adminPollOptionsEditor.innerHTML = '';
-      optionsArray.forEach((optText, index) => {
-        const row = document.createElement('div');
-        row.className = 'poll-edit-item';
-        row.innerHTML = `
-          <input type="text" value="${optText || ''}" placeholder="Option ${index + 1}" style="flex:1;" data-poll-opt>
-          <button type="button" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.8rem; color: var(--crimson);">✕</button>
+      options.forEach((optText, idx) => {
+        const count = Number(votesObj[idx]) || 0;
+        const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+        const btn = document.createElement('button');
+        btn.className = 'poll-option-btn';
+        btn.innerHTML = `
+          <div class="poll-bar" style="width: ${pct}%"></div>
+          <span>${optText}</span>
+          <span class="poll-votes">${count} (${pct}%)</span>
         `;
-        row.querySelector('button').addEventListener('click', () => {
-          row.remove();
-        });
-        adminPollOptionsEditor.appendChild(row);
+        btn.onclick = () => {
+          runTransaction(ref(db, `status/poll/votes/${idx}`), (current) => (current || 0) + 1);
+        };
+        container.appendChild(btn);
       });
     }
 
-    addPollOptBtn.addEventListener('click', () => {
-      const row = document.createElement('div');
-      row.className = 'poll-edit-item';
-      row.innerHTML = `
-        <input type="text" value="" placeholder="Neue Option" style="flex:1;" data-poll-opt>
-        <button type="button" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.8rem; color: var(--crimson);">✕</button>
-      `;
-      row.querySelector('button').addEventListener('click', () => {
-        row.remove();
+    function renderPollEditor(options) {
+      const editor = document.getElementById('adminPollOptionsEditor');
+      editor.innerHTML = '';
+      options.forEach((opt, idx) => {
+        const row = document.createElement('div');
+        row.className = 'poll-edit-item';
+        row.innerHTML = `
+          <input type="text" value="${opt}" data-poll-opt placeholder="Option ${idx+1}">
+          <button type="button" class="btn btn-outline" style="padding: 8px 12px;" onclick="this.parentElement.remove()">✕</button>
+        `;
+        editor.appendChild(row);
       });
-      adminPollOptionsEditor.appendChild(row);
-    });
+      if (options.length === 0) {
+        ['Option A', 'Option B'].forEach(opt => {
+          const row = document.createElement('div');
+          row.className = 'poll-edit-item';
+          row.innerHTML = `
+            <input type="text" value="${opt}" data-poll-opt>
+            <button type="button" class="btn btn-outline" style="padding: 8px 12px;" onclick="this.parentElement.remove()">✕</button>
+          `;
+          editor.appendChild(row);
+        });
+      }
+    }
 
-    document.getElementById('adminLoginBtn').addEventListener('click', async () => {
-      adminError.textContent = '';
-      try {
-        const snapshot = await get(passwordRef);
-        const correctPassword = snapshot.val();
+    // Admin Panel Interaktionen
+    const adminOverlay = document.getElementById('adminOverlay');
+    const adminTrigger = document.getElementById('adminTrigger');
+    const adminClose = document.getElementById('adminClose');
+    const adminCancelBtn = document.getElementById('adminCancelBtn');
+    const adminSaveBtn = document.getElementById('adminSaveBtn');
 
-        if (passwordInput.value === correctPassword) {
-          loggedOutView.style.display = 'none';
-          loggedInView.style.display = 'block';
-          
-          onValue(statusRef, (snap) => {
-            const data = snap.val() || {};
-            toggleState = !!data.live;
-            adminLiveToggle.classList.toggle('on', toggleState);
-            adminStatusTextCustom.value = data.statusTextCustom || '';
-            adminViewers.value = (data.viewers === undefined || data.viewers === null) ? '' : data.viewers;
-            adminCountdown.value = data.countdownTime || '';
-            adminSnippetLen.value = data.snippetLen || 30;
-
-            // Top Hit
-            topHitToggleState = !!(data.topHit && data.topHit.active);
-            adminTopHitToggle.classList.toggle('on', topHitToggleState);
-            adminTopHitTitle.value = (data.topHit && data.topHit.title) || '';
-            adminTopHitDesc.value = (data.topHit && data.topHit.desc) || '';
-            adminTopHitImg.value = (data.topHit && data.topHit.img) || '';
-
-            // Poll
-            pollToggleState = !!(data.poll && data.poll.active);
-            adminPollActiveToggle.classList.toggle('on', pollToggleState);
-            adminPollQuestion.value = (data.poll && data.poll.question) || '';
-            renderPollEditor((data.poll && data.poll.options) || ['Option 1', 'Option 2']);
-
-            if (data.top3 && Array.isArray(data.top3)) {
-              if (data.top3[0]) { top1Track.value = data.top3[0].track || ''; top1Img.value = data.top3[0].img || ''; }
-              if (data.top3[1]) { top2Track.value = data.top3[1].track || ''; top2Img.value = data.top3[1].img || ''; }
-              if (data.top3[2]) { top3Track.value = data.top3[2].track || ''; top3Img.value = data.top3[2].img || ''; }
-            }
-          }, { onlyOnce: true });
-
-          onValue(statsRef, (snap) => {
-            const stats = snap.val() || {};
-            document.getElementById('statVisits').textContent = stats.visits || 0;
-            document.getElementById('statClicks').textContent = stats.clicks || 0;
-            document.getElementById('statWhatnot').textContent = stats.whatnot || 0;
-            document.getElementById('statSpotify').textContent = stats.spotify || 0;
-            document.getElementById('statYtmusic').textContent = stats.ytmusic || 0;
-          });
-
-        } else {
-          adminError.textContent = 'Falsches Passwort!';
-        }
-      } catch (err) {
-        adminError.textContent = 'Datenbankfehler beim Abrufen.';
+    adminTrigger.addEventListener('click', () => {
+      adminOverlay.classList.add('open');
+      document.getElementById('adminError').textContent = '';
+      document.getElementById('adminSaveMsg').textContent = '';
+      // Initialisiere Poll-Editor falls leer
+      if (document.getElementById('adminPollOptionsEditor').children.length === 0) {
+        renderPollEditor(['Option 1', 'Option 2']);
       }
     });
 
-    document.getElementById('adminLogoutBtn').addEventListener('click', () => {
-      loggedInView.style.display = 'none';
-      loggedOutView.style.display = 'block';
-      passwordInput.value = '';
-      adminSaveMsg.textContent = '';
+    function closeAdmin() {
+      adminOverlay.classList.remove('open');
+    }
+    adminClose.addEventListener('click', closeAdmin);
+    adminCancelBtn.addEventListener('click', closeAdmin);
+    adminOverlay.addEventListener('click', (e) => {
+      if (e.target === adminOverlay) closeAdmin();
     });
 
-    document.getElementById('adminSaveBtn').addEventListener('click', async () => {
-      adminSaveMsg.style.color = 'var(--mist)';
-      adminSaveMsg.textContent = 'Speichere…';
+    // Toggles im Admin Panel
+    document.getElementById('adminLiveToggle').addEventListener('click', function() {
+      this.classList.toggle('on');
+    });
+    document.getElementById('adminTopHitToggle').addEventListener('click', function() {
+      this.classList.toggle('on');
+    });
+    document.getElementById('adminPollToggle').addEventListener('click', function() {
+      this.classList.toggle('on');
+    });
+
+    window.setPresetStatus = function(isLive, text) {
+      document.getElementById('adminLiveToggle').classList.toggle('on', isLive);
+      document.getElementById('adminStatusTextCustom').value = text;
+    };
+
+    adminSaveBtn.addEventListener('click', async () => {
+      const secret = document.getElementById('adminSecretInput').value.trim();
+      const errorEl = document.getElementById('adminError');
+      const saveMsg = document.getElementById('adminSaveMsg');
+
+      if (secret !== 'jqmagic2026' && secret !== 'JQMagicAdmin') {
+        errorEl.textContent = 'Falsches Admin Passwort!';
+        saveMsg.textContent = '';
+        return;
+      }
+      errorEl.textContent = '';
+
+      const toggleState = document.getElementById('adminLiveToggle').classList.contains('on');
+      const topHitToggleState = document.getElementById('adminTopHitToggle').classList.contains('on');
+      const pollToggleState = document.getElementById('adminPollToggle').classList.contains('on');
+
+      const top3Data = [
+        { track: document.getElementById('top1Track').value.trim(), img: document.getElementById('top1Img').value.trim() },
+        { track: document.getElementById('top2Track').value.trim(), img: document.getElementById('top2Img').value.trim() },
+        { track: document.getElementById('top3Track').value.trim(), img: document.getElementById('top3Img').value.trim() }
+      ];
+
+      const pollOpts = Array.from(document.querySelectorAll('#adminPollOptionsEditor input[data-poll-opt]'))
+        .map(input => input.value.trim())
+        .filter(val => val.length > 0);
+
       try {
-        const top3Data = [
-          { track: top1Track.value, img: top1Img.value },
-          { track: top2Track.value, img: top2Img.value },
-          { track: top3Track.value, img: top3Img.value }
-        ];
-
-        const pollOpts = Array.from(adminPollOptionsEditor.querySelectorAll('input[data-poll-opt]'))
-          .map(input => input.value.trim())
-          .filter(val => val.length > 0);
-
-        await set(statusRef, {
+        await update(statusRef, {
           live: toggleState,
-          statusTextCustom: adminStatusTextCustom.value.trim() || null,
-          viewers: adminViewers.value === '' ? null : Number(adminViewers.value),
-          countdownTime: adminCountdown.value || null,
-          snippetLen: adminSnippetLen.value ? Number(adminSnippetLen.value) : 30,
+          statusTextCustom: document.getElementById('adminStatusTextCustom').value.trim() || null,
+          viewers: document.getElementById('adminViewers').value === '' ? null : Number(document.getElementById('adminViewers').value),
+          countdownTime: document.getElementById('adminCountdown').value || null,
+          snippetLen: document.getElementById('adminSnippetLen').value ? Number(document.getElementById('adminSnippetLen').value) : 30,
           topHit: {
             active: topHitToggleState,
-            title: adminTopHitTitle.value.trim(),
-            desc: adminTopHitDesc.value.trim(),
-            img: adminTopHitImg.value.trim()
+            title: document.getElementById('adminTopHitTitle').value.trim(),
+            desc: document.getElementById('adminTopHitDesc').value.trim(),
+            img: document.getElementById('adminTopHitImg').value.trim()
           },
           poll: {
             active: pollToggleState,
-            question: adminPollQuestion.value.trim(),
+            question: document.getElementById('adminPollQuestion').value.trim(),
             options: pollOpts
           },
           top3: top3Data,
           updatedAt: Date.now()
         });
-        adminSaveMsg.style.color = 'var(--spotify)';
-        adminSaveMsg.textContent = 'Gespeichert ✓';
+        saveMsg.style.color = 'var(--spotify)';
+        saveMsg.textContent = 'Gespeichert!';
+        setTimeout(() => { closeAdmin(); }, 1000);
       } catch (err) {
-        adminSaveMsg.style.color = 'var(--crimson)';
-        adminSaveMsg.textContent = 'Fehler beim Speichern.';
+        console.error(err);
+        errorEl.textContent = 'Fehler beim Speichern in Firebase.';
+      }
+    });
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Share Button
+    document.getElementById('shareBtnTop').addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link in die Zwischenablage kopiert!');
       }
     });
   </script>
-
 </body>
 </html>
