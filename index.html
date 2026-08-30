@@ -133,6 +133,14 @@
   .section h3 { font-size: 1.08rem; font-weight: 700; color: var(--paper); }
   .section-sub { color: var(--mist); font-size: 0.82rem; margin-top: 3px; letter-spacing: 0.02em; }
 
+  /* Top 3 Sektion */
+  .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .top3-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
+  .top3-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--ink); margin-bottom: 8px; border: 1px solid var(--line); }
+  .top3-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .top3-title { font-weight: 700; font-size: 0.82rem; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top3-badge { font-size: 0.65rem; color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 2px; }
+
   .track-note { font-size: 0.78rem; color: var(--mist); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; margin-bottom: 14px; }
 
   .track { display: flex; align-items: center; gap: 12px; padding: 11px 8px; border-radius: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s ease; }
@@ -142,11 +150,21 @@
 
   .track-number { width: 28px; color: var(--mist); font-size: 0.72rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
 
-  .play-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--gold); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; flex-shrink: 0; color: var(--ink); transition: background 0.2s ease, transform 0.2s ease; }
+  .play-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--gold); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; flex-shrink: 0; color: var(--ink); transition: background 0.2s ease, transform 0.2s ease; position: relative; }
   .play-btn:hover { background: var(--gold-bright); transform: scale(1.06); }
   .play-btn.playing { background: var(--crimson); color: var(--paper); }
   .play-btn.errored { background: var(--slate); color: var(--paper); cursor: not-allowed; }
   .play-btn:disabled { opacity: 0.6; }
+
+  /* Equalizer Animation */
+  .eq-bars { display: none; align-items: flex-end; gap: 2px; height: 14px; width: 14px; }
+  .eq-bars span { display: block; width: 3px; background: currentColor; border-radius: 1px; animation: eqAnim 0.6s ease-in-out infinite alternate; }
+  .eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
+  .eq-bars span:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+  .eq-bars span:nth-child(3) { height: 40%; animation-delay: 0.4s; }
+  @keyframes eqAnim { 0% { height: 30%; } 100% { height: 100%; } }
+  .play-btn.playing .play-icon { display: none; }
+  .play-btn.playing .eq-bars { display: flex; }
 
   .track-info { flex: 1; min-width: 0; }
   .track-title { font-weight: 600; font-size: 0.93rem; color: var(--paper); letter-spacing: 0.01em; }
@@ -185,7 +203,7 @@
   .admin-overlay.open { display: flex; }
   .admin-panel {
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    padding: 26px; width: 100%; max-width: 400px; box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    padding: 26px; width: 100%; max-width: 440px; box-shadow: 0 24px 60px rgba(0,0,0,0.6);
     position: relative; max-height: 90vh; overflow-y: auto;
   }
   .admin-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--mist); font-size: 1.1rem; cursor: pointer; }
@@ -194,11 +212,11 @@
   .admin-sub { font-size: 0.78rem; color: var(--mist); margin-bottom: 18px; }
   .admin-field { margin-bottom: 12px; }
   .admin-field label { display: block; font-size: 0.75rem; color: var(--mist); margin-bottom: 5px; }
-  .admin-field input {
+  .admin-field input, .admin-field select {
     width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--line);
     background: var(--surface-2); color: var(--paper); font-size: 0.9rem; font-family: inherit;
   }
-  .admin-field input:focus { outline: none; border-color: var(--gold); }
+  .admin-field input:focus, .admin-field select:focus { outline: none; border-color: var(--gold); }
   .admin-error { font-size: 0.78rem; color: var(--crimson); margin-bottom: 10px; min-height: 1em; }
   .admin-status-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
   .toggle {
@@ -222,6 +240,7 @@
     .progress-wrap { display: none; }
     .container { padding: 30px 16px 50px; }
     .section { padding: 20px; }
+    .top3-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -276,6 +295,12 @@
       </div>
     </div>
 
+    <!-- Top 3 Community-Highlights -->
+    <div class="section" id="top3Section" style="display:none;">
+      <h3 style="margin-bottom: 14px; font-size: 0.95rem;">⭐ Top 3 Community-Favoriten</h3>
+      <div class="top3-grid" id="top3Container"></div>
+    </div>
+
     <!-- Album -->
     <div class="section">
       <div class="section-header">
@@ -292,9 +317,12 @@
       <div class="track-note" id="trackNoteText">▶ Vorschau abspielen · Klick auf den Balken zum Springen · YouTube-Logo öffnet den Song bei YouTube Music</div>
 
       <!-- Tracks 01 bis 10 -->
-      <div class="track" data-track>
+      <div class="track" data-track data-title="HIDETSUGU">
         <div class="track-number">01</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">HIDETSUGU</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -306,9 +334,12 @@
         <audio src="HIDETSUGU.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="QUANTUM RIDDLER">
         <div class="track-number">02</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="QUANTUM RIDDLER abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="QUANTUM RIDDLER abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">QUANTUM RIDDLER</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -320,9 +351,12 @@
         <audio src="QUANTUM RIDDLER.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="VORINCLEX">
         <div class="track-number">03</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="VORINCLEX abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="VORINCLEX abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">VORINCLEX</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -334,9 +368,12 @@
         <audio src="VORINCLEX.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="SHEOLDRED">
         <div class="track-number">04</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="SHEOLDRED abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="SHEOLDRED abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">SHEOLDRED</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -348,9 +385,12 @@
         <audio src="SHEOLDRED.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="HEXING SQUELCHER">
         <div class="track-number">05</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="HEXING SQUELCHER abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="HEXING SQUELCHER abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">HEXING SQUELCHER</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -362,9 +402,12 @@
         <audio src="HEXING SQUELCHER.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="EDGAR MARKOV">
         <div class="track-number">06</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="EDGAR MARKOV abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="EDGAR MARKOV abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">EDGAR MARKOV</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -376,9 +419,12 @@
         <audio src="EDGAR MARKOV.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="NAZGÛL">
         <div class="track-number">07</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="NAZGÛL abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="NAZGÛL abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">NAZGÛL</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -390,9 +436,12 @@
         <audio src="NAZGÛL.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="BUSTER SWORD">
         <div class="track-number">08</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="BUSTER SWORD abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="BUSTER SWORD abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">BUSTER SWORD</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -404,9 +453,12 @@
         <audio src="BUSTER SWORD.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="LUMRA">
         <div class="track-number">09</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="LUMRA abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="LUMRA abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">LUMRA</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -418,9 +470,12 @@
         <audio src="LUMRA.mp3" preload="none"></audio>
       </div>
 
-      <div class="track" data-track>
+      <div class="track" data-track data-title="CYCLONIC RIFT">
         <div class="track-number">10</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="CYCLONIC RIFT abspielen">▶</button>
+        <button class="play-btn" onclick="togglePlay(this)" aria-label="CYCLONIC RIFT abspielen">
+          <span class="play-icon">▶</span>
+          <span class="eq-bars"><span></span><span></span><span></span></span>
+        </button>
         <div class="track-info">
           <div class="track-title">CYCLONIC RIFT</div>
           <div class="track-artist">JQ MAGIC</div>
@@ -477,7 +532,7 @@
       </div>
 
       <div id="adminLoggedIn" style="display:none;">
-        <div class="admin-title">Live, Stats &amp; Config</div>
+        <div class="admin-title">Live, Top 3 &amp; Config</div>
         <div class="admin-sub" style="margin-bottom: 14px;">Erfolgreich angemeldet</div>
 
         <div class="admin-status-row">
@@ -500,7 +555,29 @@
           <input type="number" min="5" max="120" id="adminSnippetLen" placeholder="30">
         </div>
 
-        <div class="stats-box">
+        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
+        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">Top 3 Favoriten konfigurieren</div>
+
+        <!-- Slot 1 -->
+        <div class="admin-field">
+          <label>Top 3 Platz 1 (Titel & Bild-URL)</label>
+          <select id="top1Track" style="margin-bottom:6px;"></select>
+          <input type="text" id="top1Img" placeholder="Bild-URL oder Dateiname (z.B. cover1.jpg)">
+        </div>
+        <!-- Slot 2 -->
+        <div class="admin-field">
+          <label>Top 3 Platz 2 (Titel & Bild-URL)</label>
+          <select id="top2Track" style="margin-bottom:6px;"></select>
+          <input type="text" id="top2Img" placeholder="Bild-URL oder Dateiname">
+        </div>
+        <!-- Slot 3 -->
+        <div class="admin-field">
+          <label>Top 3 Platz 3 (Titel & Bild-URL)</label>
+          <select id="top3Track" style="margin-bottom:6px;"></select>
+          <input type="text" id="top3Img" placeholder="Bild-URL oder Dateiname">
+        </div>
+
+        <div class="stats-box" style="margin-top: 14px;">
           <div class="stats-row">
             <span>Seitenbesuche:</span>
             <span class="stats-val" id="statVisits">0</span>
@@ -541,9 +618,10 @@
     let stopTimer = null;
     let maxSnippetDuration = 30;
 
+    const trackTitlesList = Array.from(document.querySelectorAll('[data-track]')).map(el => el.dataset.title);
+
     function resetTrackVisuals(btn) {
       btn.classList.remove('playing');
-      btn.innerHTML = '▶';
     }
 
     function stopCurrent() {
@@ -584,13 +662,11 @@
         btn.disabled = false;
         currentAudio = audio; currentBtn = btn; currentFill = fill;
         btn.classList.add('playing');
-        btn.innerHTML = '⏸';
         updateProgress();
         stopTimer = setTimeout(stopCurrent, maxSnippetDuration * 1000);
       } catch (err) {
         btn.disabled = false;
         btn.classList.add('errored');
-        btn.innerHTML = '⚠';
         trackEl.classList.add('has-error');
         setTimeout(() => {
           btn.classList.remove('errored');
@@ -621,6 +697,17 @@
         navigator.clipboard.writeText(window.location.href);
         alert('Link in die Zwischenablage kopiert!');
       }
+    });
+
+    // Populate Select elements in Admin
+    ['top1Track', 'top2Track', 'top3Track'].forEach(id => {
+      const sel = document.getElementById(id);
+      trackTitlesList.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.textContent = t;
+        sel.appendChild(opt);
+      });
     });
   </script>
 
@@ -655,7 +742,7 @@
 
     document.querySelectorAll('.track-click-stat').forEach(link => {
       link.addEventListener('click', (e) => {
-        const key = link.dataset.key; // whatnot, spotify, ytmusic
+        const key = link.dataset.key;
         runTransaction(statsRef, (currentStats) => {
           if (!currentStats) currentStats = { visits: 0, clicks: 0, whatnot: 0, spotify: 0, ytmusic: 0 };
           currentStats.clicks = (currentStats.clicks || 0) + 1;
@@ -672,7 +759,8 @@
     const liveStatusText = document.getElementById('liveStatusText');
     const liveViewers = document.getElementById('liveViewers');
     const snippetSubText = document.getElementById('snippetSubText');
-    const trackNoteText = document.getElementById('trackNoteText');
+    const top3Section = document.getElementById('top3Section');
+    const top3Container = document.getElementById('top3Container');
 
     let countdownInterval = null;
 
@@ -683,6 +771,27 @@
       if (data.snippetLen) {
         window.maxSnippetDuration = Number(data.snippetLen);
         snippetSubText.textContent = `JQ MAGIC · ${window.maxSnippetDuration} Sekunden Vorschau`;
+      }
+
+      // Render Top 3 if configured
+      if (data.top3 && Array.isArray(data.top3) && data.top3.some(item => item && item.track)) {
+        top3Section.style.display = 'block';
+        top3Container.innerHTML = '';
+        data.top3.forEach((item, index) => {
+          if (!item || !item.track) return;
+          const card = document.createElement('div');
+          card.className = 'top3-card';
+          card.innerHTML = `
+            <div class="top3-badge">#${index + 1}</div>
+            <div class="top3-img-wrap">
+              <img src="${item.img || 'JQ MAGIC_ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC_ALBUM.png';">
+            </div>
+            <div class="top3-title">${item.track}</div>
+          `;
+          top3Container.appendChild(card);
+        });
+      } else {
+        top3Section.style.display = 'none';
       }
 
       liveCard.dataset.live = String(isLive);
@@ -702,7 +811,6 @@
         liveViewers.style.display = 'none';
         if (data.countdownTime) {
           const targetTime = new Date(data.countdownTime).getTime();
-          
           if (countdownInterval) clearInterval(countdownInterval);
           
           const updateTimer = () => {
@@ -750,11 +858,13 @@
     const adminCountdown = document.getElementById('adminCountdown');
     const adminSnippetLen = document.getElementById('adminSnippetLen');
     const adminSaveMsg = document.getElementById('adminSaveMsg');
-    const statVisits = document.getElementById('statVisits');
-    const statClicks = document.getElementById('statClicks');
-    const statWhatnot = document.getElementById('statWhatnot');
-    const statSpotify = document.getElementById('statSpotify');
-    const statYtmusic = document.getElementById('statYtmusic');
+    
+    const top1Track = document.getElementById('top1Track');
+    const top1Img = document.getElementById('top1Img');
+    const top2Track = document.getElementById('top2Track');
+    const top2Img = document.getElementById('top2Img');
+    const top3Track = document.getElementById('top3Track');
+    const top3Img = document.getElementById('top3Img');
 
     adminTrigger.addEventListener('click', (e) => {
       if (e.detail === 3) {
@@ -791,15 +901,21 @@
             adminViewers.value = (data.viewers === undefined || data.viewers === null) ? '' : data.viewers;
             adminCountdown.value = data.countdownTime || '';
             adminSnippetLen.value = data.snippetLen || 30;
+
+            if (data.top3 && Array.isArray(data.top3)) {
+              if (data.top3[0]) { top1Track.value = data.top3[0].track || ''; top1Img.value = data.top3[0].img || ''; }
+              if (data.top3[1]) { top2Track.value = data.top3[1].track || ''; top2Img.value = data.top3[1].img || ''; }
+              if (data.top3[2]) { top3Track.value = data.top3[2].track || ''; top3Img.value = data.top3[2].img || ''; }
+            }
           }, { onlyOnce: true });
 
           onValue(statsRef, (snap) => {
             const stats = snap.val() || {};
-            statVisits.textContent = stats.visits || 0;
-            statClicks.textContent = stats.clicks || 0;
-            statWhatnot.textContent = stats.whatnot || 0;
-            statSpotify.textContent = stats.spotify || 0;
-            statYtmusic.textContent = stats.ytmusic || 0;
+            document.getElementById('statVisits').textContent = stats.visits || 0;
+            document.getElementById('statClicks').textContent = stats.clicks || 0;
+            document.getElementById('statWhatnot').textContent = stats.whatnot || 0;
+            document.getElementById('statSpotify').textContent = stats.spotify || 0;
+            document.getElementById('statYtmusic').textContent = stats.ytmusic || 0;
           });
 
         } else {
@@ -821,11 +937,18 @@
       adminSaveMsg.style.color = 'var(--mist)';
       adminSaveMsg.textContent = 'Speichere…';
       try {
+        const top3Data = [
+          { track: top1Track.value, img: top1Img.value },
+          { track: top2Track.value, img: top2Img.value },
+          { track: top3Track.value, img: top3Img.value }
+        ];
+
         await set(statusRef, {
           live: toggleState,
           viewers: adminViewers.value === '' ? null : Number(adminViewers.value),
           countdownTime: adminCountdown.value || null,
           snippetLen: adminSnippetLen.value ? Number(adminSnippetLen.value) : 30,
+          top3: top3Data,
           updatedAt: Date.now()
         });
         adminSaveMsg.style.color = 'var(--spotify)';
