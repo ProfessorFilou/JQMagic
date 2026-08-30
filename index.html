@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JQ Magic | THE GATHERING</title>
 <meta name="description" content="JQ Magic – Live Card Breaks auf Whatnot und das Album THE GATHERING.">
-<link rel="icon" type="image/png" href="JQ MAGIC_FAVICON.png">
+<link rel="icon" type="image/x-icon" href="JQ MAGIC_FAVICON.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -151,7 +151,13 @@
   .progress-fill { height: 100%; background: var(--gold); width: 0%; border-radius: 4px; transition: width 0.1s linear; }
   .track-time { color: var(--mist); font-size: 0.78rem; width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
 
-  .yt-btn { width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border: 1px solid var(--line); color: var(--mist); font-size: 0.65rem; font-weight: 700; transition: all 0.15s ease; }
+  .yt-btn {
+    width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface-2); border: 1px solid var(--line);
+    color: var(--mist); transition: all 0.15s ease;
+  }
+  .yt-btn svg { width: 14px; height: 14px; fill: currentColor; }
   .yt-btn:hover { color: var(--ytmusic); border-color: var(--ytmusic); }
 
   audio { display: none; }
@@ -163,7 +169,6 @@
   
   .admin-trigger { cursor: pointer; user-select: none; }
 
-  /* Admin overlay */
   .admin-overlay {
     position: fixed; inset: 0; background: rgba(10,9,16,0.86);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
@@ -270,8 +275,9 @@
         </div>
       </div>
 
-      <div class="track-note">▶ Vorschau abspielen · Klick auf den Balken zum Springen · 📺 öffnet den Song bei YouTube Music</div>
+      <div class="track-note">▶ Vorschau abspielen · Klick auf den Balken zum Springen · YouTube-Logo öffnet den Song bei YouTube Music</div>
 
+      <!-- Tracks 01 bis 10 mit YouTube SVG-Logo Button -->
       <div class="track" data-track>
         <div class="track-number">01</div>
         <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">▶</button>
@@ -282,7 +288,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">3:57</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+HIDETSUGU" target="_blank" rel="noopener" aria-label="HIDETSUGU bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+HIDETSUGU" target="_blank" rel="noopener" aria-label="HIDETSUGU bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="HIDETSUGU.mp3" preload="none"></audio>
       </div>
 
@@ -296,7 +302,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">4:38</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+QUANTUM+RIDDLER" target="_blank" rel="noopener" aria-label="QUANTUM RIDDLER bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+QUANTUM+RIDDLER" target="_blank" rel="noopener" aria-label="QUANTUM RIDDLER bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="QUANTUM RIDDLER.mp3" preload="none"></audio>
       </div>
 
@@ -310,7 +316,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">3:34</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+VORINCLEX" target="_blank" rel="noopener" aria-label="VORINCLEX bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+VORINCLEX" target="_blank" rel="noopener" aria-label="VORINCLEX bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="VORINCLEX.mp3" preload="none"></audio>
       </div>
 
@@ -324,7 +330,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">3:59</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+SHEOLDRED" target="_blank" rel="noopener" aria-label="SHEOLDRED bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+SHEOLDRED" target="_blank" rel="noopener" aria-label="SHEOLDRED bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="SHEOLDRED.mp3" preload="none"></audio>
       </div>
 
@@ -338,7 +344,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">4:44</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+HEXING+SQUELCHER" target="_blank" rel="noopener" aria-label="HEXING SQUELCHER bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+HEXING+SQUELCHER" target="_blank" rel="noopener" aria-label="HEXING SQUELCHER bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="HEXING SQUELCHER.mp3" preload="none"></audio>
       </div>
 
@@ -352,7 +358,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">3:02</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+EDGAR+MARKOV" target="_blank" rel="noopener" aria-label="EDGAR MARKOV bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+EDGAR+MARKOV" target="_blank" rel="noopener" aria-label="EDGAR MARKOV bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="EDGAR MARKOV.mp3" preload="none"></audio>
       </div>
 
@@ -366,7 +372,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">2:58</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+NAZGUL" target="_blank" rel="noopener" aria-label="NAZGÛL bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+NAZGUL" target="_blank" rel="noopener" aria-label="NAZGÛL bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="NAZGÛL.mp3" preload="none"></audio>
       </div>
 
@@ -380,7 +386,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">3:39</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+BUSTER+SWORD" target="_blank" rel="noopener" aria-label="BUSTER SWORD bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+BUSTER+SWORD" target="_blank" rel="noopener" aria-label="BUSTER SWORD bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="BUSTER SWORD.mp3" preload="none"></audio>
       </div>
 
@@ -394,7 +400,7 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">4:53</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+LUMRA" target="_blank" rel="noopener" aria-label="LUMRA bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+LUMRA" target="_blank" rel="noopener" aria-label="LUMRA bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="LUMRA.mp3" preload="none"></audio>
       </div>
 
@@ -408,11 +414,11 @@
         </div>
         <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
         <div class="track-time">2:50</div>
-        <a class="yt-btn" href="https://music.youtube.com/search?q=JQ+Magic+CYCLONIC+RIFT" target="_blank" rel="noopener" aria-label="CYCLONIC RIFT bei YouTube Music suchen">YT</a>
+        <a class="yt-btn yt-track-link" href="https://music.youtube.com/search?q=JQ+Magic+CYCLONIC+RIFT" target="_blank" rel="noopener" aria-label="CYCLONIC RIFT bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         <audio src="CYCLONIC RIFT.mp3" preload="none"></audio>
       </div>
 
-      <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-spotify btn-full" style="margin-top: 18px;">
+      <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-spotify btn-full what-link" style="margin-top: 18px;">
         Ganzes Album auf Spotify
       </a>
     </div>
@@ -424,10 +430,10 @@
         <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link">
           Whatnot Profil &amp; Shop
         </a>
-        <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-outline btn-full">
+        <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link">
           Spotify – JQ MAGIC
         </a>
-        <a href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" class="btn btn-outline btn-full">
+        <a href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link">
           YouTube Music – JQ MAGIC
         </a>
       </div>
@@ -445,7 +451,6 @@
     <div class="admin-panel">
       <button class="admin-close" id="adminClose" aria-label="Schließen">✕</button>
 
-      <!-- Ansicht: Login -->
       <div id="adminLoggedOut">
         <div class="admin-title">Admin-Login</div>
         <div class="admin-sub">Passwort eingeben</div>
@@ -457,7 +462,6 @@
         <button class="btn btn-live btn-full" data-live="true" style="margin-top:0;" id="adminLoginBtn">Einloggen</button>
       </div>
 
-      <!-- Ansicht: Dashboard (Live-Steuerung & Stats) -->
       <div id="adminLoggedIn" style="display:none;">
         <div class="admin-title">Live &amp; Stats Steuerung</div>
         <div class="admin-sub" style="margin-bottom: 14px;">Erfolgreich angemeldet</div>
@@ -478,7 +482,7 @@
             <span class="stats-val" id="statVisits">0</span>
           </div>
           <div class="stats-row">
-            <span>Whatnot-Klicks:</span>
+            <span>Link-Klicks (Total):</span>
             <span class="stats-val" id="statClicks">0</span>
           </div>
         </div>
@@ -494,7 +498,6 @@
   </div>
 
   <script>
-    // ---- Player ----
     let currentAudio = null;
     let currentBtn = null;
     let currentFill = null;
@@ -571,7 +574,6 @@
     }
   </script>
 
-  <!-- Firebase & Admin-Logik über Realtime Database -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
     import { getDatabase, ref, onValue, set, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
@@ -592,10 +594,6 @@
     const passwordRef = ref(db, "jqmagic/jqmagic");
     const statsRef = ref(db, "jqmagic/stats");
 
-    // Einmalig das Passwort in der Datenbank hinterlegen (falls noch nicht vorhanden)
-    set(passwordRef, "JQWHAT");
-
-    // Besucherzähler bei Seitenaufruf erhöhen (Session-basiert via sessionStorage)
     if (!sessionStorage.getItem('jq_visited')) {
       sessionStorage.setItem('jq_visited', 'true');
       runTransaction(statsRef, (currentStats) => {
@@ -605,8 +603,7 @@
       });
     }
 
-    // Klick-Statistik für Whatnot-Links erhöhen
-    document.querySelectorAll('.what-link').forEach(link => {
+    document.querySelectorAll('.what-link, .yt-track-link').forEach(link => {
       link.addEventListener('click', () => {
         runTransaction(statsRef, (currentStats) => {
           if (!currentStats) currentStats = { visits: 0, clicks: 0 };
@@ -616,7 +613,6 @@
       });
     });
 
-    // ---- Öffentliche Anzeige: Live-Status auslesen ----
     const liveCard = document.getElementById('liveCard');
     const liveBtn = document.getElementById('liveBtn');
     const liveStatusText = document.getElementById('liveStatusText');
@@ -645,7 +641,6 @@
       liveViewers.style.display = 'none';
     });
 
-    // ---- Admin-Overlay per Dreifachklick auf Copyright steuern ----
     const overlay = document.getElementById('adminOverlay');
     const adminTrigger = document.getElementById('adminTrigger');
     const loggedOutView = document.getElementById('adminLoggedOut');
@@ -676,7 +671,6 @@
       adminLiveToggle.classList.toggle('on', toggleState);
     });
 
-    // Login via RTDB-Passwortprüfung unter jqmagic/jqmagic
     document.getElementById('adminLoginBtn').addEventListener('click', async () => {
       adminError.textContent = '';
       try {
@@ -687,7 +681,6 @@
           loggedOutView.style.display = 'none';
           loggedInView.style.display = 'block';
           
-          // Live-Werte und Statistiken ins Admin-Panel laden
           onValue(statusRef, (snap) => {
             const data = snap.val() || {};
             toggleState = !!data.live;
@@ -709,7 +702,6 @@
       }
     });
 
-    // Logout
     document.getElementById('adminLogoutBtn').addEventListener('click', () => {
       loggedInView.style.display = 'none';
       loggedOutView.style.display = 'block';
@@ -717,7 +709,6 @@
       adminSaveMsg.textContent = '';
     });
 
-    // Speichern
     document.getElementById('adminSaveBtn').addEventListener('click', async () => {
       adminSaveMsg.style.color = 'var(--mist)';
       adminSaveMsg.textContent = 'Speichere…';
