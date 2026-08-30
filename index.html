@@ -642,7 +642,7 @@
 
         <div class="admin-field">
           <label for="adminCountdown">Nächster Stream Countdown (Datum &amp; Uhrzeit)</label>
-          <input type="datetime-local" id="adminCountdown">
+          <input type="datetime-local" id="adminCountdown" min="2024-01-01T00:00" max="2099-12-31T23:59">
         </div>
 
         <div class="admin-field">
@@ -671,6 +671,10 @@
 
         <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
         <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top 3 Community-Favoriten</div>
+        <div class="admin-status-row" style="margin-bottom: 8px;">
+          <span>Top 3 Sektion anzeigen</span>
+          <button class="toggle" id="adminTop3Toggle" aria-label="Top 3 umschalten"></button>
+        </div>
         <div class="admin-field">
           <label>Platz 1</label>
           <select id="top1Track" style="margin-bottom:6px;"></select>
@@ -998,10 +1002,10 @@
       window.latestPollData = data.poll;
       renderPoll(data.poll, window.currentPollVotes || {});
 
-      if (data.top3 && Array.isArray(data.top3) && data.top3.some(item => item && item.track)) {
+      if (data.top3 && data.top3.active && Array.isArray(data.top3.list) && data.top3.list.some(item => item && item.track)) {
         top3Section.style.display = 'block';
         top3Container.innerHTML = '';
-        data.top3.forEach((item, index) => {
+        data.top3.list.forEach((item, index) => {
           if (!item || !item.track) return;
           const card = document.createElement('div');
           card.className = 'top3-card';
@@ -1089,6 +1093,7 @@
     const adminTopHitDesc = document.getElementById('adminTopHitDesc');
     const adminTopHitImg = document.getElementById('adminTopHitImg');
 
+    const adminTop3Toggle = document.getElementById('adminTop3Toggle');
     const top1Track = document.getElementById('top1Track');
     const top1Img = document.getElementById('top1Img');
     const top2Track = document.getElementById('top2Track');
@@ -1123,6 +1128,12 @@
     adminTopHitToggle.addEventListener('click', () => {
       topHitToggleState = !topHitToggleState;
       adminTopHitToggle.classList.toggle('on', topHitToggleState);
+    });
+
+    let top3ToggleState = false;
+    adminTop3Toggle.addEventListener('click', () => {
+      top3ToggleState = !top3ToggleState;
+      adminTop3Toggle.classList.toggle('on', top3ToggleState);
     });
 
     let pollToggleState = false;
@@ -1185,16 +1196,17 @@
             adminTopHitDesc.value = (data.topHit && data.topHit.desc) || '';
             adminTopHitImg.value = (data.topHit && data.topHit.img) || '';
 
+            top3ToggleState = !!(data.top3 && data.top3.active);
+            adminTop3Toggle.classList.toggle('on', top3ToggleState);
+            const top3List = (data.top3 && data.top3.list) || [];
+            if (top3List[0]) { top1Track.value = top3List[0].track || ''; top1Img.value = top3List[0].img || ''; }
+            if (top3List[1]) { top2Track.value = top3List[1].track || ''; top2Img.value = top3List[1].img || ''; }
+            if (top3List[2]) { top3Track.value = top3List[2].track || ''; top3Img.value = top3List[2].img || ''; }
+
             pollToggleState = !!(data.poll && data.poll.active);
             adminPollActiveToggle.classList.toggle('on', pollToggleState);
             adminPollQuestion.value = (data.poll && data.poll.question) || '';
             renderPollEditor((data.poll && data.poll.options) || ['Option 1', 'Option 2']);
-
-            if (data.top3 && Array.isArray(data.top3)) {
-              if (data.top3[0]) { top1Track.value = data.top3[0].track || ''; top1Img.value = data.top3[0].img || ''; }
-              if (data.top3[1]) { top2Track.value = data.top3[1].track || ''; top2Img.value = data.top3[1].img || ''; }
-              if (data.top3[2]) { top3Track.value = data.top3[2].track || ''; top3Img.value = data.top3[2].img || ''; }
-            }
           }, { onlyOnce: true });
 
           onValue(statsRef, (snap) => {
@@ -1225,7 +1237,7 @@
       adminSaveMsg.style.color = 'var(--mist)';
       adminSaveMsg.textContent = 'Speichere…';
       try {
-        const top3Data = [
+        const top3ListData = [
           { track: top1Track.value, img: top1Img.value },
           { track: top2Track.value, img: top2Img.value },
           { track: top3Track.value, img: top3Img.value }
@@ -1247,12 +1259,15 @@
             desc: adminTopHitDesc.value.trim(),
             img: adminTopHitImg.value.trim()
           },
+          top3: {
+            active: top3ToggleState,
+            list: top3ListData
+          },
           poll: {
             active: pollToggleState,
             question: adminPollQuestion.value.trim(),
             options: pollOpts
           },
-          top3: top3Data,
           updatedAt: Date.now()
         });
         adminSaveMsg.style.color = 'var(--spotify)';
