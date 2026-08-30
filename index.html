@@ -67,10 +67,10 @@
     color: var(--ink); font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.8rem;
   }
   .logo-word { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.06em; color: var(--paper); }
-  
+
   .topbar-right { display: flex; align-items: center; gap: 10px; }
   .topbar-tag { font-size: 0.72rem; color: var(--mist); letter-spacing: 0.18em; font-weight: 600; }
-  
+
   .share-btn-top {
     background: var(--surface-2); border: 1px solid var(--line); color: var(--paper);
     padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;
@@ -78,7 +78,6 @@
   }
   .share-btn-top:hover { border-color: var(--gold); }
 
-  /* Volume Controller in Topbar */
   .vol-control { display: flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 8px; font-size: 0.72rem; color: var(--mist); }
   .vol-control input[type="range"] { width: 64px; accent-color: var(--gold); cursor: pointer; }
 
@@ -133,8 +132,7 @@
 
   .section { background: var(--surface); border-radius: 20px; border: 1px solid var(--line); padding: 24px; margin-bottom: 22px; }
   .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-  
-  /* Vinyl Record Animation */
+
   .album-cover { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: var(--surface-2); border: 1.5px solid var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,0.35); position: relative; }
   .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
   .album-cover.playing-vinyl img {
@@ -147,11 +145,10 @@
   }
   @keyframes spinVinyl { 100% { transform: rotate(360deg); } }
   .album-cover-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 1.6rem; }
-  
+
   .section h3 { font-size: 1.08rem; font-weight: 700; color: var(--paper); }
   .section-sub { color: var(--mist); font-size: 0.82rem; margin-top: 3px; letter-spacing: 0.02em; }
 
-  /* Top Hit Spotlight */
   .tophit-banner {
     background: linear-gradient(135deg, rgba(216,174,93,0.12) 0%, rgba(20,19,29,0.95) 70%);
     border: 1px solid var(--gold); border-radius: 16px; padding: 16px; margin-bottom: 22px;
@@ -164,7 +161,6 @@
   .tophit-title { font-size: 1rem; font-weight: 700; color: var(--paper); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tophit-desc { font-size: 0.82rem; color: var(--mist); }
 
-  /* Top 3 Sektion */
   .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
   .top3-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
   .top3-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--ink); margin-bottom: 8px; border: 1px solid var(--line); transition: transform 0.2s ease; }
@@ -173,7 +169,6 @@
   .top3-title { font-weight: 700; font-size: 0.82rem; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .top3-badge { font-size: 0.65rem; color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 2px; }
 
-  /* Umfrage Widget */
   .poll-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 22px; }
   .poll-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 12px; color: var(--paper); display: flex; align-items: center; gap: 8px; }
   .poll-options { display: flex; flex-direction: column; gap: 8px; }
@@ -199,7 +194,6 @@
   .play-btn.errored { background: var(--slate); color: var(--paper); cursor: not-allowed; }
   .play-btn:disabled { opacity: 0.6; }
 
-  /* Equalizer Animation */
   .eq-bars { display: none; align-items: flex-end; gap: 2px; height: 14px; width: 14px; }
   .eq-bars span { display: block; width: 3px; background: currentColor; border-radius: 1px; animation: eqAnim 0.6s ease-in-out infinite alternate; }
   .eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
@@ -234,8 +228,7 @@
   .link-list { display: flex; flex-direction: column; gap: 11px; }
 
   footer { text-align: center; padding: 34px 16px 10px; color: var(--mist); font-size: 0.82rem; }
-  footer .fine-print { font-size: 0.74rem; margin-top: 5px; display: block; opacity: 0.75; }
-  
+
   .admin-trigger { cursor: pointer; user-select: none; }
 
   .admin-overlay {
@@ -260,8 +253,7 @@
     background: var(--surface-2); color: var(--paper); font-size: 0.9rem; font-family: inherit;
   }
   .admin-field input:focus, .admin-field select:focus, .admin-field textarea:focus { outline: none; border-color: var(--gold); }
-  
-  /* Fast Status Preset Buttons */
+
   .fast-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 12px; }
   .fast-btn { background: var(--surface-2); border: 1px solid var(--line); color: var(--paper); font-size: 0.74rem; padding: 7px 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: border-color 0.15s; }
   .fast-btn:hover { border-color: var(--gold); }
@@ -277,7 +269,7 @@
   .toggle.on::after { transform: translateX(20px); }
   .admin-btn-row { display: flex; gap: 10px; margin-top: 4px; }
   .admin-btn-row .btn { padding: 12px 16px; font-size: 0.88rem; }
-  
+
   .stats-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
   .stats-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
   .stats-row:last-child { margin-bottom: 0; }
@@ -300,7 +292,7 @@
 
   <div class="topbar">
     <div class="logo" id="logoClick">
-      <img class="logo-mark" src="JQ MAGIC_LOGO.png" alt="JQ Magic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <img class="logo-mark" src="JQ MAGIC LOGO.png" alt="JQ Magic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="logo-mark-fallback">JQ</div>
       <span class="logo-word">JQ MAGIC</span>
     </div>
@@ -319,10 +311,9 @@
 
   <div class="container">
 
-    <!-- Top-Hit im Stream / Pull des Tages -->
     <div class="tophit-banner" id="topHitBanner" style="display:none;">
       <div class="tophit-thumb">
-        <img id="topHitImg" src="JQ MAGIC_ALBUM.png" alt="Top Hit" onerror="this.src='JQ MAGIC_ALBUM.png';">
+        <img id="topHitImg" src="JQ MAGIC ALBUM.png" alt="Top Hit" onerror="this.src='JQ MAGIC ALBUM.png';">
       </div>
       <div class="tophit-info">
         <div class="tophit-kicker">⭐ TOP-HIT IM STREAM / PULL DES TAGES</div>
@@ -343,7 +334,7 @@
 
         <div class="show-header">
           <div class="show-thumb">
-            <img src="JQ MAGIC_ALBUM.png" alt="Sonntag Breaks" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="JQ MAGIC ALBUM.png" alt="Sonntag Breaks" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="show-thumb-fallback">✨</div>
           </div>
           <div class="show-info">
@@ -363,13 +354,11 @@
       </div>
     </div>
 
-    <!-- Top 3 Community-Highlights -->
     <div class="section" id="top3Section" style="display:none;">
       <h3 style="margin-bottom: 14px; font-size: 0.95rem;">⭐ Top 3 Community-Favoriten</h3>
       <div class="top3-grid" id="top3Container"></div>
     </div>
 
-    <!-- Community Umfrage Widget -->
     <div class="poll-box" id="pollBox" style="display:none;">
       <div class="poll-title">
         <span>📊 Community-Umfrage:</span>
@@ -379,11 +368,10 @@
       <div class="poll-total" id="pollTotalVotes">0 Stimmen insgesamt</div>
     </div>
 
-    <!-- Album -->
     <div class="section">
       <div class="section-header">
         <div class="album-cover" id="mainAlbumCover">
-          <img src="JQ MAGIC_ALBUM.png" alt="THE GATHERING Albumcover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="JQ MAGIC ALBUM.png" alt="THE GATHERING Albumcover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="album-cover-fallback">🎵</div>
         </div>
         <div>
@@ -394,7 +382,6 @@
 
       <div class="track-note" id="trackNoteText">▶ Vorschau abspielen · Klick auf den Balken zum Springen · Vinyl-Rotation aktiv</div>
 
-      <!-- Tracks 01 bis 10 -->
       <div class="track" data-track data-title="HIDETSUGU">
         <div class="track-number">01</div>
         <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">
@@ -570,7 +557,6 @@
       </a>
     </div>
 
-    <!-- Links -->
     <div class="section">
       <h3 style="margin-bottom: 16px;">Links</h3>
       <div class="link-list">
@@ -590,10 +576,8 @@
 
   <footer>
     <span class="admin-trigger" id="adminTrigger">© 2026 JQ Magic · Jakob</span>
-    <span class="fine-print">Nicht offiziell mit Whatnot verbunden</span>
   </footer>
 
-  <!-- Admin-Overlay -->
   <div class="admin-overlay" id="adminOverlay">
     <div class="admin-panel">
       <button class="admin-close" id="adminClose" aria-label="Schließen">✕</button>
@@ -648,7 +632,6 @@
           <input type="number" min="5" max="120" id="adminSnippetLen" placeholder="30">
         </div>
 
-        <!-- Top-Hit im Stream konfigurieren -->
         <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
         <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top-Hit im Stream / Pull des Tages</div>
         <div class="admin-status-row" style="margin-bottom: 8px;">
@@ -668,7 +651,6 @@
           <input type="text" id="adminTopHitImg" placeholder="z. B. sheoldred.jpg">
         </div>
 
-        <!-- Top 3 Favoriten -->
         <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
         <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top 3 Community-Favoriten</div>
         <div class="admin-field">
@@ -687,7 +669,6 @@
           <input type="text" id="top3Img" placeholder="Bild-URL">
         </div>
 
-        <!-- Community Umfrage konfigurieren -->
         <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
         <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">📊 Community-Umfrage verwalten</div>
         <div class="admin-status-row" style="margin-bottom: 8px;">
@@ -826,7 +807,6 @@
       if (currentFill) currentFill.style.width = (ratio * 100) + '%';
     }
 
-    // Logo Click Easter Egg (Triple click for Admin hint)
     let logoClicks = 0;
     document.getElementById('logoClick').addEventListener('click', () => {
       logoClicks++;
@@ -850,7 +830,6 @@
       }
     });
 
-    // Populate Select elements in Admin
     ['top1Track', 'top2Track', 'top3Track'].forEach(id => {
       const sel = document.getElementById(id);
       trackTitlesList.forEach(t => {
@@ -863,7 +842,6 @@
 
     function setFastStatus(text, btnText, isLive) {
       document.getElementById('adminLiveToggle').classList.toggle('on', isLive);
-      // We store temporary flag or let admin toggle handle it
       window.tempFastLive = isLive;
       window.tempFastText = text;
       alert(`Schnell-Status übernommen: "${text}" (Klicke unten auf Speichern).`);
@@ -932,7 +910,6 @@
 
     let countdownInterval = null;
 
-    // Listen to Poll Votes
     onValue(pollVotesRef, (snap) => {
       window.currentPollVotes = snap.val() || {};
       if (window.latestPollData) renderPoll(window.latestPollData, window.currentPollVotes);
@@ -985,13 +962,12 @@
     onValue(statusRef, (snap) => {
       const data = snap.val() || {};
       const isLive = !!data.live;
-      
+
       if (data.snippetLen) {
         window.maxSnippetDuration = Number(data.snippetLen);
         snippetSubText.textContent = `JQ MAGIC · ${window.maxSnippetDuration} Sekunden Vorschau`;
       }
 
-      // Render Top Hit Banner
       if (data.topHit && data.topHit.active && data.topHit.title) {
         topHitBanner.style.display = 'flex';
         topHitTitle.textContent = data.topHit.title;
@@ -1001,11 +977,9 @@
         topHitBanner.style.display = 'none';
       }
 
-      // Render Poll
       window.latestPollData = data.poll;
       renderPoll(data.poll, window.currentPollVotes || {});
 
-      // Render Top 3 if configured
       if (data.top3 && Array.isArray(data.top3) && data.top3.some(item => item && item.track)) {
         top3Section.style.display = 'block';
         top3Container.innerHTML = '';
@@ -1016,7 +990,7 @@
           card.innerHTML = `
             <div class="top3-badge">#${index + 1}</div>
             <div class="top3-img-wrap">
-              <img src="${item.img || 'JQ MAGIC_ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC_ALBUM.png';">
+              <img src="${item.img || 'JQ MAGIC ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC ALBUM.png';">
             </div>
             <div class="top3-title">${item.track}</div>
           `;
@@ -1032,7 +1006,7 @@
       if (isLive) {
         if (countdownInterval) clearInterval(countdownInterval);
         liveStatusText.textContent = data.statusTextCustom || 'JETZT LIVE';
-        liveBtn.textContent = 'Zum Live-Stream →';
+        liveBtn.textContent = 'Zum Whatnot-Kanal →';
         if (data.viewers !== undefined && data.viewers !== null && data.viewers !== '') {
           liveViewers.textContent = data.viewers + ' Zuschauer';
           liveViewers.style.display = 'inline-block';
@@ -1044,7 +1018,7 @@
         if (data.countdownTime) {
           const targetTime = new Date(data.countdownTime).getTime();
           if (countdownInterval) clearInterval(countdownInterval);
-          
+
           const updateTimer = () => {
             const now = new Date().getTime();
             const diff = targetTime - now;
@@ -1053,7 +1027,7 @@
               const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
               const secs = Math.floor((diff % (1000 * 60)) / 1000);
-              
+
               let timeStr = `${hours}h ${mins}m ${secs}s`;
               if (days > 0) timeStr = `${days}d ${timeStr}`;
               liveStatusText.textContent = `NÄCHSTER STREAM IN: ${timeStr}`;
@@ -1091,7 +1065,7 @@
     const adminCountdown = document.getElementById('adminCountdown');
     const adminSnippetLen = document.getElementById('adminSnippetLen');
     const adminSaveMsg = document.getElementById('adminSaveMsg');
-    
+
     const adminTopHitToggle = document.getElementById('adminTopHitToggle');
     const adminTopHitTitle = document.getElementById('adminTopHitTitle');
     const adminTopHitDesc = document.getElementById('adminTopHitDesc');
@@ -1177,7 +1151,7 @@
         if (passwordInput.value === correctPassword) {
           loggedOutView.style.display = 'none';
           loggedInView.style.display = 'block';
-          
+
           onValue(statusRef, (snap) => {
             const data = snap.val() || {};
             toggleState = !!data.live;
@@ -1187,14 +1161,12 @@
             adminCountdown.value = data.countdownTime || '';
             adminSnippetLen.value = data.snippetLen || 30;
 
-            // Top Hit
             topHitToggleState = !!(data.topHit && data.topHit.active);
             adminTopHitToggle.classList.toggle('on', topHitToggleState);
             adminTopHitTitle.value = (data.topHit && data.topHit.title) || '';
             adminTopHitDesc.value = (data.topHit && data.topHit.desc) || '';
             adminTopHitImg.value = (data.topHit && data.topHit.img) || '';
 
-            // Poll
             pollToggleState = !!(data.poll && data.poll.active);
             adminPollActiveToggle.classList.toggle('on', pollToggleState);
             adminPollQuestion.value = (data.poll && data.poll.question) || '';
@@ -1261,7 +1233,7 @@
             active: pollToggleState,
             question: adminPollQuestion.value.trim(),
             options: pollOpts
-          },a
+          },
           top3: top3Data,
           updatedAt: Date.now()
         });
