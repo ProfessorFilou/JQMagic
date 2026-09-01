@@ -8,193 +8,258 @@
 <link rel="icon" type="image/x-icon" href="JQ_MAGIC_FAVICON.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0a0910;
-    --surface: #14131d;
-    --surface-2: #1c1a28;
-    --line: rgba(216, 174, 93, 0.16);
-    --gold: #d8ae5d;
-    --gold-bright: #f0cd8a;
-    --crimson: #e14b4b;
-    --crimson-deep: #b52f2f;
+    /* -- core palette: warm-black "playmat", parchment ink, mythic-orange as the single
+       signature accent (a rarity color pulled straight from the subject matter), a quiet
+       gold reserved for the music/album thread, and a muted crimson used ONLY for the live pulse. */
+    --void: #0c0a12;
+    --void-2: #131019;
+    --panel: #17131f;
+    --panel-2: #1d1828;
+    --frame: #352c42;
+    --frame-soft: rgba(226, 113, 29, 0.16);
+    --parchment: #f1e8d6;
+    --parchment-dim: #a89fc0;
+    --mist: #7e7692;
+    --mythic: #e2711d;
+    --mythic-bright: #ff9a4d;
+    --gold: #c9a227;
+    --gold-soft: #e4c66b;
+    --crimson: #d1495b;
     --spotify: #1db954;
-    --ytmusic: #ff0000;
-    --slate: #55536a;
-    --paper: #f3efe6;
-    --mist: #9a94ac;
+    --ytm: #ff3b3b;
+    --radius-card: 18px;
+    --radius-inner: 12px;
+    --radius-pill: 999px;
+    --shadow-lift: 0 20px 48px rgba(0,0,0,0.45);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
   }
+
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
     background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(216,174,93,0.10), transparent 60%),
-      var(--ink);
-    color: var(--paper);
-    line-height: 1.55;
+      radial-gradient(ellipse 1100px 620px at 18% -8%, rgba(226,113,29,0.10), transparent 60%),
+      radial-gradient(ellipse 900px 520px at 100% 10%, rgba(201,162,39,0.06), transparent 55%),
+      var(--void);
+    color: var(--parchment);
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
 
   a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; }
+  img { max-width: 100%; display: block; }
 
-  :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 2px solid var(--mythic-bright); outline-offset: 3px; border-radius: 4px; }
 
-  h1, h2, h3, .display { font-family: 'Cinzel', serif; letter-spacing: 0.02em; }
+  .display { font-family: 'Fraunces', serif; font-optical-sizing: auto; letter-spacing: -0.01em; }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-optical-sizing: auto; letter-spacing: -0.01em; color: var(--parchment); }
 
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- top bar ---------- */
   .topbar {
-    background: rgba(10, 9, 16, 0.78);
+    background: rgba(12, 10, 18, 0.82);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    padding: 16px 22px;
-    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--frame);
+    padding: 14px clamp(16px, 4vw, 28px);
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
     position: sticky; top: 0; z-index: 100;
   }
 
-  .logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .logo-mark { height: 34px; width: 34px; border-radius: 9px; flex-shrink: 0; object-fit: cover; }
+  .logo { display: flex; align-items: center; gap: 11px; cursor: pointer; }
+  .logo-mark { height: 32px; width: 32px; border-radius: 8px; flex-shrink: 0; object-fit: cover; }
   .logo-mark-fallback {
-    height: 34px; width: 34px; border-radius: 9px; flex-shrink: 0; display: none;
+    height: 32px; width: 32px; border-radius: 8px; flex-shrink: 0; display: none;
     align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--crimson-deep) 100%);
-    color: var(--ink); font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.8rem;
+    background: linear-gradient(150deg, var(--mythic) 0%, #7a3a12 100%);
+    color: var(--void); font-family: 'Fraunces', serif; font-weight: 800; font-size: 0.78rem;
   }
-  .logo-word { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.06em; color: var(--paper); }
+  .logo-word { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.08rem; color: var(--parchment); }
+  .logo-word small { display: block; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--mist); margin-top: 1px; }
 
-  .topbar-right { display: flex; align-items: center; gap: 10px; }
-  .topbar-tag { font-size: 0.72rem; color: var(--mist); letter-spacing: 0.18em; font-weight: 600; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
 
-  .share-btn-top {
-    background: var(--surface-2); border: 1px solid var(--line); color: var(--paper);
-    padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer;
-    display: flex; align-items: center; gap: 6px; transition: border-color 0.15s ease;
+  .icon-btn {
+    background: var(--panel-2); border: 1px solid var(--frame); color: var(--parchment-dim);
+    height: 36px; padding: 0 12px; border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: 7px; transition: border-color 0.15s ease, color 0.15s ease;
   }
-  .share-btn-top:hover { border-color: var(--gold); }
+  .icon-btn:hover { border-color: var(--mythic); color: var(--parchment); }
+  .icon-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-  .vol-control { display: flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 8px; font-size: 0.72rem; color: var(--mist); }
-  .vol-control input[type="range"] { width: 64px; accent-color: var(--gold); cursor: pointer; }
-
-  .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 60px; }
-
-  .live-card {
-    position: relative; border-radius: 22px; padding: 1.5px; margin-bottom: 24px;
-    box-shadow: 0 18px 44px rgba(0,0,0,0.5);
-    transition: background 0.4s ease;
+  .vol-control { position: relative; }
+  .vol-popover {
+    position: absolute; top: calc(100% + 8px); right: 0; background: var(--panel-2);
+    border: 1px solid var(--frame); border-radius: 12px; padding: 12px 14px; display: none;
+    box-shadow: var(--shadow-lift); z-index: 50; width: 160px;
   }
-  .live-card[data-live="true"] {
-    background: linear-gradient(120deg, var(--gold) 0%, rgba(216,174,93,0.15) 30%, var(--crimson) 55%, rgba(216,174,93,0.15) 80%, var(--gold) 100%);
-    background-size: 260% 260%;
-    animation: foilSweep 9s ease-in-out infinite;
+  .vol-popover.open { display: block; }
+  .vol-popover input[type="range"] { width: 100%; accent-color: var(--mythic); cursor: pointer; }
+  .vol-popover label { font-size: 0.7rem; color: var(--mist); display: block; margin-bottom: 6px; }
+
+  /* ---------- layout ---------- */
+  .layout {
+    max-width: 1080px; margin: 0 auto;
+    padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 28px) 60px;
+    display: grid; gap: 22px; grid-template-columns: 1fr;
   }
-  .live-card[data-live="false"], .live-card[data-live="pending"] {
-    background: linear-gradient(120deg, var(--slate) 0%, rgba(85,83,106,0.2) 50%, var(--slate) 100%);
+
+  @media (min-width: 900px) {
+    .layout { grid-template-columns: 360px 1fr; align-items: start; }
+    .layout-left { position: sticky; top: 92px; display: flex; flex-direction: column; gap: 22px; }
+    .layout-right { display: flex; flex-direction: column; gap: 22px; }
   }
-  @keyframes foilSweep { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
-  .live-card-inner { background: linear-gradient(180deg, var(--surface) 0%, #100f18 100%); border-radius: 20.5px; padding: 20px 20px 22px; }
+  .layout-left, .layout-right { display: flex; flex-direction: column; gap: 22px; }
 
-  .live-nameplate { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
-  .live-status { display: flex; align-items: center; gap: 10px; }
-  .live-dot { width: 9px; height: 9px; background: var(--crimson); border-radius: 50%; animation: pulseRing 1.8s ease-out infinite; }
-  .live-card[data-live="false"] .live-dot, .live-card[data-live="pending"] .live-dot { background: var(--slate); animation: none; }
-  @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(225,75,75,0.55); } 70% { box-shadow: 0 0 0 9px rgba(225,75,75,0); } 100% { box-shadow: 0 0 0 0 rgba(225,75,75,0); } }
-  .live-status-text { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; color: var(--crimson); }
-  .live-card[data-live="false"] .live-status-text, .live-card[data-live="pending"] .live-status-text { color: var(--mist); }
-  .live-viewers { font-size: 0.78rem; color: var(--mist); font-weight: 600; background: var(--surface-2); padding: 5px 12px; border-radius: 30px; border: 1px solid var(--line); }
-
-  .show-header { display: flex; gap: 18px; }
-  .show-thumb { width: 108px; height: 108px; border-radius: 14px; overflow: hidden; flex-shrink: 0; background: var(--surface-2); border: 1px solid var(--line); position: relative; transition: transform 0.2s ease; }
-  .show-thumb:hover { transform: scale(1.03); }
-  .show-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .show-thumb-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 2rem; }
-  .show-info h2 { font-size: 1.12rem; font-weight: 700; margin-bottom: 6px; color: var(--paper); line-height: 1.3; }
-  .show-info p { color: var(--mist); font-size: 0.9rem; margin-bottom: 12px; }
-
-  .tag { display: inline-block; background: rgba(216, 174, 93, 0.08); color: var(--gold-bright); border: 1px solid var(--line); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 20px; margin-right: 6px; }
-
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 22px; border-radius: 13px; font-weight: 700; font-size: 0.98rem; border: none; cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; }
-  .btn-full { width: 100%; }
-  .btn-live { background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-deep) 100%); color: var(--paper); margin-top: 18px; box-shadow: 0 10px 26px rgba(225, 75, 75, 0.28); }
-  .btn-live:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(225, 75, 75, 0.36); }
-  .btn-live[data-live="false"], .btn-live[data-live="pending"] { background: var(--surface-2); color: var(--paper); border: 1px solid var(--line); box-shadow: none; }
-  .btn-live[data-live="false"]:hover, .btn-live[data-live="pending"]:hover { border-color: var(--gold); }
-  .btn-spotify { background: var(--spotify); color: #06210f; }
-  .btn-spotify:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(29, 185, 84, 0.28); }
-  .btn-outline { background: var(--surface-2); color: var(--paper); border: 1px solid var(--line); }
-  .btn-outline:hover { border-color: var(--gold); background: #201e2c; transform: translateY(-1px); }
-
-  .section { background: var(--surface); border-radius: 20px; border: 1px solid var(--line); padding: 24px; margin-bottom: 22px; }
-  .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-
-  .album-cover { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: var(--surface-2); border: 1.5px solid var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,0.35); position: relative; }
-  .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
-  .album-cover.playing-vinyl img {
-    border-radius: 50%;
-    animation: spinVinyl 4s linear infinite;
+  /* ---------- card-frame primitive: every panel borrows the layered border of a trading
+     card — a hairline outer frame, then a slightly inset panel, echoing the site's subject
+     without leaning on foil-gradient cliches. ---------- */
+  .frame {
+    border: 1px solid var(--frame);
+    border-radius: var(--radius-card);
+    background: linear-gradient(180deg, var(--panel) 0%, var(--void-2) 100%);
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
   }
-  .album-cover.playing-vinyl::after {
-    content: ''; position: absolute; inset: 32%; border-radius: 50%;
-    background: var(--ink); border: 2px solid var(--gold); z-index: 2;
-  }
-  @keyframes spinVinyl { 100% { transform: rotate(360deg); } }
-  .album-cover-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 1.6rem; }
 
-  .section h3 { font-size: 1.08rem; font-weight: 700; color: var(--paper); }
-  .section-sub { color: var(--mist); font-size: 0.82rem; margin-top: 3px; letter-spacing: 0.02em; }
-
-  .tophit-banner {
-    background: linear-gradient(135deg, rgba(216,174,93,0.12) 0%, rgba(20,19,29,0.95) 70%);
-    border: 1px solid var(--gold); border-radius: 16px; padding: 16px; margin-bottom: 22px;
-    display: flex; gap: 16px; align-items: center; box-shadow: 0 8px 24px rgba(216,174,93,0.08);
+  .frame-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 12px 18px; border-bottom: 1px solid var(--frame);
+    background: var(--panel-2);
   }
-  .tophit-thumb { width: 72px; height: 72px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--gold); background: var(--surface-2); }
+  .frame-body { padding: 18px; }
+
+  /* ---------- top hit banner ---------- */
+  .tophit {
+    border-color: var(--mythic);
+    background: linear-gradient(155deg, rgba(226,113,29,0.14) 0%, var(--void-2) 65%);
+  }
+  .tophit .frame-body { display: flex; gap: 15px; align-items: center; padding: 16px; }
+  .tophit-thumb { width: 66px; height: 66px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--mythic); background: var(--panel-2); }
   .tophit-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .tophit-info { flex: 1; min-width: 0; }
-  .tophit-kicker { font-size: 0.68rem; font-family: 'Cinzel', serif; color: var(--gold-bright); letter-spacing: 0.12em; font-weight: 700; margin-bottom: 3px; }
-  .tophit-title { font-size: 1rem; font-weight: 700; color: var(--paper); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tophit-desc { font-size: 0.82rem; color: var(--mist); }
+  .tophit-kicker { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--mythic-bright); letter-spacing: 0.06em; font-weight: 700; margin-bottom: 4px; }
+  .tophit-kicker svg { width: 12px; height: 12px; }
+  .tophit-title { font-family: 'Fraunces', serif; font-size: 1.02rem; font-weight: 600; color: var(--parchment); margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tophit-desc { font-size: 0.82rem; color: var(--parchment-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-  .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-  .top3-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
-  .top3-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--ink); margin-bottom: 8px; border: 1px solid var(--line); transition: transform 0.2s ease; }
-  .top3-img-wrap:hover { transform: scale(1.04); }
+  /* ---------- live card ---------- */
+  .live-frame { transition: border-color 0.4s ease; }
+  .live-frame[data-live="true"] { border-color: var(--mythic); box-shadow: 0 0 0 1px rgba(226,113,29,0.25), var(--shadow-lift); }
+
+  .live-status { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .live-gem { width: 10px; height: 10px; border-radius: 3px; transform: rotate(45deg); background: var(--mist); flex-shrink: 0; }
+  .live-frame[data-live="true"] .live-gem { background: var(--mythic); animation: gemPulse 1.8s ease-in-out infinite; }
+  @keyframes gemPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(226,113,29,0.5); } 50% { box-shadow: 0 0 0 6px rgba(226,113,29,0); } }
+  .live-status-text { font-family: 'Fraunces', serif; font-weight: 600; font-size: 0.84rem; color: var(--parchment-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .live-frame[data-live="true"] .live-status-text { color: var(--mythic-bright); }
+  .live-viewers { font-size: 0.72rem; color: var(--mist); font-weight: 600; background: var(--void-2); padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--frame); flex-shrink: 0; }
+
+  .show-header { display: flex; gap: 16px; padding: 16px 18px 0; }
+  .show-thumb { width: 92px; height: 92px; border-radius: var(--radius-inner); overflow: hidden; flex-shrink: 0; background: var(--panel-2); border: 1px solid var(--frame); position: relative; }
+  .show-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .show-thumb-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 1.7rem; }
+  .show-info h2 { font-size: 1.08rem; font-weight: 600; margin-bottom: 6px; line-height: 1.28; }
+  .show-info p { color: var(--parchment-dim); font-size: 0.86rem; margin-bottom: 10px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { display: inline-block; background: var(--void-2); color: var(--gold-soft); border: 1px solid var(--frame); font-size: 0.68rem; font-weight: 600; padding: 4px 9px; border-radius: var(--radius-pill); }
+
+  .live-frame .frame-cta { padding: 16px 18px 18px; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 20px; border-radius: 12px; font-weight: 700; font-size: 0.94rem;
+    border: none; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-full { width: 100%; }
+  .btn-primary { background: linear-gradient(135deg, var(--mythic) 0%, #b6560f 100%); color: #1c0f04; box-shadow: 0 10px 24px rgba(226,113,29,0.26); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(226,113,29,0.34); }
+  .btn-quiet { background: var(--void-2); color: var(--parchment-dim); border: 1px solid var(--frame); box-shadow: none; }
+  .btn-quiet:hover { border-color: var(--mythic); color: var(--parchment); }
+  .btn-spotify { background: var(--spotify); color: #05230f; }
+  .btn-spotify:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(29,185,84,0.26); }
+  .btn-outline { background: var(--panel-2); color: var(--parchment); border: 1px solid var(--frame); }
+  .btn-outline:hover { border-color: var(--mythic); background: #221c30; transform: translateY(-1px); }
+
+  /* ---------- section heading ---------- */
+  .frame-bar h3 { font-size: 0.96rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .frame-bar h3 svg { width: 15px; height: 15px; color: var(--mythic-bright); flex-shrink: 0; }
+  .frame-bar-sub { font-size: 0.76rem; color: var(--mist); }
+
+  /* ---------- top 3 ---------- */
+  .top3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .top3-card { background: var(--void-2); border: 1px solid var(--frame); border-radius: var(--radius-inner); padding: 10px; text-align: center; }
+  .top3-rank { width: 20px; height: 20px; margin: 0 auto 8px; border-radius: 5px; transform: rotate(45deg); background: var(--panel-2); border: 1px solid var(--frame); display: flex; align-items: center; justify-content: center; }
+  .top3-rank span { transform: rotate(-45deg); font-family: 'Fraunces', serif; font-size: 0.7rem; font-weight: 700; color: var(--gold-soft); }
+  .top3-card:first-child .top3-rank { border-color: var(--mythic); background: rgba(226,113,29,0.14); }
+  .top3-card:first-child .top3-rank span { color: var(--mythic-bright); }
+  .top3-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--void); margin-bottom: 8px; border: 1px solid var(--frame); }
   .top3-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .top3-title { font-weight: 700; font-size: 0.82rem; color: var(--paper); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .top3-badge { font-size: 0.65rem; color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 2px; }
+  .top3-title { font-weight: 700; font-size: 0.78rem; color: var(--parchment); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  .poll-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 22px; }
-  .poll-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 12px; color: var(--paper); display: flex; align-items: center; gap: 8px; }
-  .poll-options { display: flex; flex-direction: column; gap: 8px; }
-  .poll-option-btn { background: var(--surface); border: 1px solid var(--line); color: var(--paper); padding: 10px 14px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.15s ease; position: relative; overflow: hidden; }
-  .poll-option-btn:hover { border-color: var(--gold); background: #222031; }
-  .poll-bar { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(216, 174, 93, 0.12); z-index: 1; transition: width 0.3s ease; }
-  .poll-option-btn span { position: relative; z-index: 2; }
-  .poll-votes { font-size: 0.78rem; color: var(--gold-bright); font-variant-numeric: tabular-nums; }
-  .poll-total { font-size: 0.75rem; color: var(--mist); margin-top: 10px; text-align: right; }
+  /* ---------- poll ---------- */
+  .poll-question { font-size: 0.86rem; color: var(--parchment-dim); margin-bottom: 2px; }
+  .poll-options { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .poll-option-btn {
+    background: var(--void-2); border: 1px solid var(--frame); color: var(--parchment);
+    padding: 11px 14px; border-radius: 10px; font-size: 0.86rem; font-weight: 600; text-align: left;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; transition: border-color 0.15s ease; position: relative; overflow: hidden;
+  }
+  .poll-option-btn:hover { border-color: var(--mythic); }
+  .poll-option-btn:disabled { cursor: default; }
+  .poll-bar { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(226,113,29,0.16); z-index: 1; transition: width 0.4s ease; }
+  .poll-option-btn span, .poll-option-btn .poll-votes { position: relative; z-index: 2; }
+  .poll-option-btn span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .poll-votes { font-size: 0.76rem; color: var(--gold-soft); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .poll-total { font-size: 0.74rem; color: var(--mist); margin-top: 10px; text-align: right; }
 
-  .track-note { font-size: 0.78rem; color: var(--mist); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; margin-bottom: 14px; }
+  /* ---------- album / tracklist ---------- */
+  .album-head { display: flex; align-items: center; gap: 16px; padding: 18px 18px 0; }
+  .album-cover { width: 76px; height: 76px; border-radius: var(--radius-inner); overflow: hidden; flex-shrink: 0; background: var(--panel-2); border: 1.5px solid var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,0.35); position: relative; }
+  .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .album-cover.playing-vinyl img { border-radius: 50%; animation: spinVinyl 4.2s linear infinite; }
+  .album-cover.playing-vinyl::after { content: ''; position: absolute; inset: 32%; border-radius: 50%; background: var(--void); border: 2px solid var(--gold); z-index: 2; }
+  @keyframes spinVinyl { 100% { transform: rotate(360deg); } }
+  .album-cover-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 1.4rem; }
+  .album-head h3 { font-size: 1.05rem; font-weight: 700; }
+  .album-sub { color: var(--mist); font-size: 0.78rem; margin-top: 3px; }
 
-  .track { display: flex; align-items: center; gap: 12px; padding: 11px 8px; border-radius: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s ease; }
-  .track:last-of-type { border-bottom: none; }
-  .track:hover { background: var(--surface-2); }
-  .track.has-error { background: rgba(225, 75, 75, 0.06); }
+  .track-note { font-size: 0.76rem; color: var(--mist); background: var(--void-2); border: 1px solid var(--frame); border-radius: 10px; padding: 9px 12px; margin: 16px 18px 4px; }
 
-  .track-number { width: 28px; color: var(--mist); font-size: 0.72rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+  .tracklist { padding: 4px 10px 6px; }
+  .track { display: flex; align-items: center; gap: 11px; padding: 10px 8px; border-radius: 10px; transition: background 0.15s ease; }
+  .track:hover { background: var(--void-2); }
+  .track.has-error { background: rgba(209,73,91,0.08); }
 
-  .play-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--gold); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; flex-shrink: 0; color: var(--ink); transition: background 0.2s ease, transform 0.2s ease; position: relative; }
-  .play-btn:hover { background: var(--gold-bright); transform: scale(1.06); }
-  .play-btn.playing { background: var(--crimson); color: var(--paper); }
-  .play-btn.errored { background: var(--slate); color: var(--paper); cursor: not-allowed; }
+  .track-number { width: 22px; color: var(--mist); font-size: 0.72rem; font-weight: 600; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+  .play-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; flex-shrink: 0; color: var(--void); transition: background 0.2s ease, transform 0.2s ease; }
+  .play-btn:hover { background: var(--gold-soft); transform: scale(1.05); }
+  .play-btn.playing { background: var(--mythic); color: #1c0f04; }
+  .play-btn.errored { background: var(--frame); color: var(--parchment); cursor: not-allowed; }
   .play-btn:disabled { opacity: 0.6; }
 
-  .eq-bars { display: none; align-items: flex-end; gap: 2px; height: 14px; width: 14px; }
+  .eq-bars { display: none; align-items: flex-end; gap: 2px; height: 13px; width: 13px; }
   .eq-bars span { display: block; width: 3px; background: currentColor; border-radius: 1px; animation: eqAnim 0.6s ease-in-out infinite alternate; }
   .eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
   .eq-bars span:nth-child(2) { height: 100%; animation-delay: 0.2s; }
@@ -204,87 +269,85 @@
   .play-btn.playing .eq-bars { display: flex; }
 
   .track-info { flex: 1; min-width: 0; }
-  .track-title { font-weight: 600; font-size: 0.93rem; color: var(--paper); letter-spacing: 0.01em; }
-  .track-artist { font-size: 0.76rem; color: var(--mist); margin-top: 1px; }
-  .track-error-msg { font-size: 0.72rem; color: var(--crimson); margin-top: 2px; display: none; }
+  .track-title { font-weight: 600; font-size: 0.9rem; color: var(--parchment); }
+  .track-artist { font-size: 0.74rem; color: var(--mist); margin-top: 1px; }
+  .track-error-msg { font-size: 0.7rem; color: var(--crimson); margin-top: 2px; display: none; }
   .track.has-error .track-error-msg { display: block; }
 
-  .progress-wrap { flex: 1; max-width: 100px; margin: 0 2px; cursor: pointer; padding: 6px 0; }
-  .progress-bar { height: 4px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .progress-wrap { flex: 1; max-width: 90px; margin: 0 2px; cursor: pointer; padding: 8px 0; }
+  .progress-bar { height: 4px; background: var(--void-2); border-radius: 4px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--gold); width: 0%; border-radius: 4px; transition: width 0.1s linear; }
-  .track-time { color: var(--mist); font-size: 0.78rem; width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
+  .track-time { color: var(--mist); font-size: 0.76rem; width: 34px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; }
 
-  .yt-btn {
-    width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--surface-2); border: 1px solid var(--line);
-    color: var(--mist); transition: all 0.15s ease;
-  }
-  .yt-btn svg { width: 14px; height: 14px; fill: currentColor; }
-  .yt-btn:hover { color: var(--ytmusic); border-color: var(--ytmusic); }
+  .yt-btn { width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--void-2); border: 1px solid var(--frame); color: var(--mist); transition: all 0.15s ease; }
+  .yt-btn svg { width: 13px; height: 13px; fill: currentColor; }
+  .yt-btn:hover { color: var(--ytm); border-color: var(--ytm); }
 
   audio { display: none; }
 
-  .link-list { display: flex; flex-direction: column; gap: 11px; }
+  .album-cta { padding: 6px 18px 18px; }
 
-  footer { text-align: center; padding: 34px 16px 10px; color: var(--mist); font-size: 0.82rem; }
+  /* ---------- contact ---------- */
+  .field { margin-bottom: 12px; }
+  .field label { display: block; font-size: 0.75rem; color: var(--mist); margin-bottom: 5px; font-weight: 600; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 13px; border-radius: 10px; border: 1px solid var(--frame);
+    background: var(--void-2); color: var(--parchment); font-size: 0.9rem; font-family: inherit;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--mythic); }
+  .field textarea { resize: vertical; }
+  .form-note { font-size: 0.72rem; color: var(--mist); margin-top: 2px; }
 
-  .admin-trigger { cursor: pointer; user-select: none; }
+  .link-list { display: flex; flex-direction: column; gap: 10px; }
 
+  footer { text-align: center; padding: 36px 16px 14px; color: var(--mist); font-size: 0.8rem; grid-column: 1 / -1; }
+  .admin-trigger { cursor: default; user-select: none; }
+
+  /* ---------- admin overlay ---------- */
   .admin-overlay {
-    position: fixed; inset: 0; background: rgba(10,9,16,0.86);
+    position: fixed; inset: 0; background: rgba(12,10,18,0.88);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
   }
   .admin-overlay.open { display: flex; }
   .admin-panel {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    padding: 26px; width: 100%; max-width: 480px; box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    background: var(--panel); border: 1px solid var(--frame); border-radius: 18px;
+    padding: 24px; width: 100%; max-width: 480px; box-shadow: var(--shadow-lift);
     position: relative; max-height: 90vh; overflow-y: auto;
   }
-  .admin-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--mist); font-size: 1.1rem; cursor: pointer; }
-  .admin-close:hover { color: var(--paper); }
-  .admin-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .admin-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--mist); font-size: 1.05rem; cursor: pointer; padding: 4px; }
+  .admin-close:hover { color: var(--parchment); }
+  .admin-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
   .admin-sub { font-size: 0.78rem; color: var(--mist); margin-bottom: 18px; }
-  .admin-field { margin-bottom: 12px; }
-  .admin-field label { display: block; font-size: 0.75rem; color: var(--mist); margin-bottom: 5px; }
-  .admin-field input, .admin-field select, .admin-field textarea {
-    width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--line);
-    background: var(--surface-2); color: var(--paper); font-size: 0.9rem; font-family: inherit;
-  }
-  .admin-field input:focus, .admin-field select:focus, .admin-field textarea:focus { outline: none; border-color: var(--gold); }
+  .admin-error { font-size: 0.78rem; color: var(--crimson); margin-bottom: 10px; min-height: 1em; }
+  .admin-status-row { display: flex; align-items: center; justify-content: space-between; background: var(--void-2); border: 1px solid var(--frame); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
+
+  .toggle { width: 44px; height: 25px; border-radius: 20px; background: var(--frame); border: none; cursor: pointer; position: relative; transition: background 0.2s ease; flex-shrink: 0; }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 19px; height: 19px; border-radius: 50%; background: var(--parchment); transition: transform 0.2s ease; }
+  .toggle.on { background: var(--mythic); }
+  .toggle.on::after { transform: translateX(19px); }
 
   .fast-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 12px; }
-  .fast-btn { background: var(--surface-2); border: 1px solid var(--line); color: var(--paper); font-size: 0.74rem; padding: 7px 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: border-color 0.15s; }
-  .fast-btn:hover { border-color: var(--gold); }
+  .fast-btn { background: var(--void-2); border: 1px solid var(--frame); color: var(--parchment); font-size: 0.74rem; padding: 8px 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: border-color 0.15s; }
+  .fast-btn:hover { border-color: var(--mythic); }
 
-  .admin-error { font-size: 0.78rem; color: var(--crimson); margin-bottom: 10px; min-height: 1em; }
-  .admin-status-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
-  .toggle {
-    width: 46px; height: 26px; border-radius: 20px; background: var(--slate); border: none; cursor: pointer;
-    position: relative; transition: background 0.2s ease; flex-shrink: 0;
-  }
-  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); transition: transform 0.2s ease; }
-  .toggle.on { background: var(--crimson); }
-  .toggle.on::after { transform: translateX(20px); }
   .admin-btn-row { display: flex; gap: 10px; margin-top: 4px; }
   .admin-btn-row .btn { padding: 12px 16px; font-size: 0.88rem; }
 
-  .stats-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
+  .stats-box { background: var(--void-2); border: 1px solid var(--frame); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.85rem; }
   .stats-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
   .stats-row:last-child { margin-bottom: 0; }
-  .stats-val { font-weight: 700; color: var(--gold-bright); }
+  .stats-val { font-weight: 700; color: var(--mythic-bright); }
 
   .poll-edit-item { display: flex; gap: 8px; margin-bottom: 6px; align-items: center; }
+  .divider { border: 0; border-top: 1px solid var(--frame); margin: 18px 0; }
 
-  @media (max-width: 560px) {
-    .show-header { flex-direction: column; }
-    .show-thumb { width: 100%; height: 190px; }
+  @media (max-width: 559px) {
     .progress-wrap { display: none; }
-    .container { padding: 30px 16px 50px; }
-    .section { padding: 20px; }
     .top3-grid { grid-template-columns: 1fr; }
-    .tophit-banner { flex-direction: column; text-align: center; }
+    .tophit .frame-body { flex-direction: column; text-align: center; }
+    .show-header { flex-direction: column; }
+    .show-thumb { width: 100%; height: 160px; }
   }
 </style>
 </head>
@@ -292,309 +355,348 @@
 
   <div class="topbar">
     <div class="logo" id="logoClick">
-      <img class="logo-mark" src="JQ MAGIC LOGO.png" alt="JQ Magic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <img class="logo-mark" src="JQ MAGIC LOGO.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="logo-mark-fallback">JQ</div>
-      <span class="logo-word">JQ MAGIC</span>
+      <span class="logo-word">JQ Magic<small>The Gathering</small></span>
     </div>
     <div class="topbar-right">
-      <div class="vol-control" title="Lautstärke">
-        <span>🔊</span>
-        <input type="range" id="globalVolume" min="0" max="1" step="0.05" value="1" aria-label="Lautstärke">
+      <div class="vol-control">
+        <button class="icon-btn" id="volToggle" aria-haspopup="true" aria-expanded="false" aria-label="Lautstärke einstellen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg>
+        </button>
+        <div class="vol-popover" id="volPopover">
+          <label for="globalVolume">Lautstärke</label>
+          <input type="range" id="globalVolume" min="0" max="1" step="0.05" value="1">
+        </div>
       </div>
-      <button class="share-btn-top" id="shareBtnTop" aria-label="Seite teilen">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
-        Teilen
+      <button class="icon-btn" id="shareBtnTop" aria-label="Seite teilen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+        <span>Teilen</span>
       </button>
-      <div class="topbar-tag">THE GATHERING</div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="layout">
 
-    <div class="tophit-banner" id="topHitBanner" style="display:none;">
-      <div class="tophit-thumb">
-        <img id="topHitImg" src="JQ MAGIC ALBUM.png" alt="Top Hit" onerror="this.src='JQ MAGIC ALBUM.png';">
-      </div>
-      <div class="tophit-info">
-        <div class="tophit-kicker">⭐ TOP-HIT IM STREAM / PULL DES TAGES</div>
-        <div class="tophit-title" id="topHitTitle">Titel wird geladen...</div>
-        <div class="tophit-desc" id="topHitDesc">Beschreibung des heutigen Hits...</div>
-      </div>
-    </div>
+    <div class="layout-left">
 
-    <div class="live-card" id="liveCard" data-live="pending">
-      <div class="live-card-inner">
-        <div class="live-nameplate">
+      <div class="frame tophit" id="topHitBanner" style="display:none;">
+        <div class="frame-body">
+          <div class="tophit-thumb">
+            <img id="topHitImg" src="JQ MAGIC ALBUM.png" alt="" onerror="this.src='JQ MAGIC ALBUM.png';">
+          </div>
+          <div class="tophit-info">
+            <div class="tophit-kicker">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.63L18.2 21 12 17.27 5.8 21 7 13.9l-5-4.63 7.1-1.01L12 2z"></path></svg>
+              Top-Hit im Stream
+            </div>
+            <div class="tophit-title" id="topHitTitle">Titel wird geladen…</div>
+            <div class="tophit-desc" id="topHitDesc">Beschreibung des heutigen Pulls…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="frame live-frame" id="liveCard" data-live="pending">
+        <div class="frame-bar">
           <div class="live-status">
-            <div class="live-dot"></div>
-            <span class="live-status-text" id="liveStatusText">STATUS WIRD GELADEN…</span>
+            <div class="live-gem"></div>
+            <span class="live-status-text" id="liveStatusText" aria-live="polite">STATUS WIRD GELADEN…</span>
           </div>
           <div class="live-viewers" id="liveViewers" style="display:none;"></div>
         </div>
 
         <div class="show-header">
           <div class="show-thumb">
-            <img src="JQ MAGIC ALBUM.png" alt="Sonntag Breaks" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="show-thumb-fallback">✨</div>
+            <img src="JQ MAGIC ALBUM.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="show-thumb-fallback">✦</div>
           </div>
           <div class="show-info">
-            <h2>JQ MAGIC · SONNTAG BREAKS</h2>
-            <p>L · XL · XXL · BREAKS ✨ mit HOBBIT CB</p>
-            <div>
+            <h2>Sonntag Breaks</h2>
+            <p>L · XL · XXL Breaks mit Hobbit CB</p>
+            <div class="tag-row">
               <span class="tag">Whatnot</span>
-              <span class="tag">Hobbit</span>
+              <span class="tag">Hobbit CB</span>
               <span class="tag">Breaks</span>
             </div>
           </div>
         </div>
 
-        <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-live btn-full what-link track-click-stat" data-key="whatnot" id="liveBtn" data-live="pending">
-          Zum Whatnot-Kanal →
-        </a>
+        <div class="frame-cta">
+          <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-primary btn-full track-click-stat" data-key="whatnot" id="liveBtn" data-live="pending">
+            Zum Whatnot-Kanal
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg>
+          </a>
+        </div>
       </div>
+
     </div>
 
-    <div class="section" id="top3Section" style="display:none;">
-      <h3 style="margin-bottom: 14px; font-size: 0.95rem;">⭐ Top 3 Community-Favoriten</h3>
-      <div class="top3-grid" id="top3Container"></div>
+    <div class="layout-right">
+
+      <div class="frame" id="top3Section" style="display:none;">
+        <div class="frame-bar">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.63L18.2 21 12 17.27 5.8 21 7 13.9l-5-4.63 7.1-1.01L12 2z"></path></svg>
+            Top 3 Community-Favoriten
+          </h3>
+        </div>
+        <div class="frame-body">
+          <div class="top3-grid" id="top3Container"></div>
+        </div>
+      </div>
+
+      <div class="frame" id="pollBox" style="display:none;">
+        <div class="frame-bar">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            Community-Umfrage
+          </h3>
+        </div>
+        <div class="frame-body">
+          <div class="poll-question" id="pollQuestionText">Frage…</div>
+          <div class="poll-options" id="pollOptionsContainer"></div>
+          <div class="poll-total" id="pollTotalVotes">0 Stimmen insgesamt</div>
+        </div>
+      </div>
+
+      <div class="frame">
+        <div class="album-head">
+          <div class="album-cover" id="mainAlbumCover">
+            <img src="JQ MAGIC ALBUM.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="album-cover-fallback">♪</div>
+          </div>
+          <div>
+            <h3>The Gathering</h3>
+            <div class="album-sub" id="snippetSubText">JQ Magic · 30 Sekunden Vorschau</div>
+          </div>
+        </div>
+
+        <div class="track-note" id="trackNoteText">Vorschau abspielen · Klick auf den Balken zum Springen</div>
+
+        <div class="tracklist">
+          <div class="track" data-track data-title="HIDETSUGU">
+            <div class="track-number">01</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Hidetsugu</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">3:57</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+HIDETSUGU" target="_blank" rel="noopener" aria-label="Hidetsugu bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="HIDETSUGU.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="QUANTUM RIDDLER">
+            <div class="track-number">02</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="QUANTUM RIDDLER abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Quantum Riddler</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">4:38</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+QUANTUM+RIDDLER" target="_blank" rel="noopener" aria-label="Quantum Riddler bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="QUANTUM RIDDLER.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="VORINCLEX">
+            <div class="track-number">03</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="VORINCLEX abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Vorinclex</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">3:34</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+VORINCLEX" target="_blank" rel="noopener" aria-label="Vorinclex bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="VORINCLEX.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="SHEOLDRED">
+            <div class="track-number">04</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="SHEOLDRED abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Sheoldred</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">3:59</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+SHEOLDRED" target="_blank" rel="noopener" aria-label="Sheoldred bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="SHEOLDRED.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="HEXING SQUELCHER">
+            <div class="track-number">05</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="HEXING SQUELCHER abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Hexing Squelcher</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">4:44</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+HEXING+SQUELCHER" target="_blank" rel="noopener" aria-label="Hexing Squelcher bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="HEXING SQUELCHER.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="EDGAR MARKOV">
+            <div class="track-number">06</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="EDGAR MARKOV abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Edgar Markov</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">3:02</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+EDGAR+MARKOV" target="_blank" rel="noopener" aria-label="Edgar Markov bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="EDGAR MARKOV.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="NAZGÛL">
+            <div class="track-number">07</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="NAZGÛL abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Nazgûl</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">2:58</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+NAZGUL" target="_blank" rel="noopener" aria-label="Nazgûl bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="NAZGÛL.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="BUSTER SWORD">
+            <div class="track-number">08</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="BUSTER SWORD abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Buster Sword</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">3:39</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+BUSTER+SWORD" target="_blank" rel="noopener" aria-label="Buster Sword bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="BUSTER SWORD.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="LUMRA">
+            <div class="track-number">09</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="LUMRA abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Lumra</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">4:53</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+LUMRA" target="_blank" rel="noopener" aria-label="Lumra bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="LUMRA.mp3" preload="none"></audio>
+          </div>
+
+          <div class="track" data-track data-title="CYCLONIC RIFT">
+            <div class="track-number">10</div>
+            <button class="play-btn" onclick="togglePlay(this)" aria-label="CYCLONIC RIFT abspielen">
+              <span class="play-icon">▶</span>
+              <span class="eq-bars"><span></span><span></span><span></span></span>
+            </button>
+            <div class="track-info">
+              <div class="track-title">Cyclonic Rift</div>
+              <div class="track-artist">JQ Magic</div>
+              <div class="track-error-msg">Datei nicht gefunden</div>
+            </div>
+            <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
+            <div class="track-time">2:50</div>
+            <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+CYCLONIC+RIFT" target="_blank" rel="noopener" aria-label="Cyclonic Rift bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <audio src="CYCLONIC RIFT.mp3" preload="none"></audio>
+          </div>
+        </div>
+
+        <div class="album-cta">
+          <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-spotify btn-full track-click-stat" data-key="spotify">
+            Ganzes Album auf Spotify
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.59 14.4a.62.62 0 0 1-.85.21c-2.33-1.42-5.27-1.75-8.73-.96a.622.622 0 1 1-.28-1.213c3.79-.867 7.04-.494 9.65 1.11.297.183.39.57.21.86zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.67-1.64-6.73-2.12-9.89-1.16a.782.782 0 1 1-.45-1.497c3.61-1.09 8.09-.56 11.16 1.33.37.23.48.71.25 1.07zm.11-2.83c-3.2-1.9-8.48-2.08-11.53-1.15a.937.937 0 1 1-.54-1.795c3.5-1.06 9.31-.856 12.99 1.32a.936.936 0 1 1-.95 1.62z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="frame">
+        <div class="frame-bar">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16v12H5.17L4 17.17V4z"></path></svg>
+            Kontakt
+          </h3>
+        </div>
+        <div class="frame-body">
+          <form action="https://formspree.io/f/maeyqyyk" method="POST">
+            <div class="field">
+              <label for="cName">Name</label>
+              <input type="text" id="cName" name="name" placeholder="Dein Name" required />
+            </div>
+            <div class="field">
+              <label for="cEmail">E-Mail</label>
+              <input type="email" id="cEmail" name="email" placeholder="Deine E-Mail-Adresse" required />
+            </div>
+            <div class="field">
+              <label for="cMessage">Nachricht</label>
+              <textarea id="cMessage" name="message" rows="4" placeholder="Deine Nachricht…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline btn-full">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="frame">
+        <div class="frame-bar"><h3>Links</h3></div>
+        <div class="frame-body">
+          <div class="link-list">
+            <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-outline btn-full track-click-stat" data-key="whatnot">Whatnot Profil &amp; Shop</a>
+            <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-outline btn-full track-click-stat" data-key="spotify">Spotify – JQ Magic</a>
+            <a href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" class="btn btn-outline btn-full track-click-stat" data-key="ytmusic">YouTube Music – JQ Magic</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="poll-box" id="pollBox" style="display:none;">
-      <div class="poll-title">
-        <span>📊 Community-Umfrage:</span>
-        <span id="pollQuestionText" style="font-weight: 400; color: var(--mist);">Frage...</span>
-      </div>
-      <div class="poll-options" id="pollOptionsContainer"></div>
-      <div class="poll-total" id="pollTotalVotes">0 Stimmen insgesamt</div>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="album-cover" id="mainAlbumCover">
-          <img src="JQ MAGIC ALBUM.png" alt="THE GATHERING Albumcover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="album-cover-fallback">🎵</div>
-        </div>
-        <div>
-          <h3>THE GATHERING</h3>
-          <div class="section-sub" id="snippetSubText">JQ MAGIC · 30 Sekunden Vorschau</div>
-        </div>
-      </div>
-
-      <div class="track-note" id="trackNoteText">▶ Vorschau abspielen · Klick auf den Balken zum Springen · Vinyl-Rotation aktiv</div>
-
-      <div class="track" data-track data-title="HIDETSUGU">
-        <div class="track-number">01</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="HIDETSUGU abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">HIDETSUGU</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:57</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+HIDETSUGU" target="_blank" rel="noopener" aria-label="HIDETSUGU bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="HIDETSUGU.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="QUANTUM RIDDLER">
-        <div class="track-number">02</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="QUANTUM RIDDLER abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">QUANTUM RIDDLER</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">4:38</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+QUANTUM+RIDDLER" target="_blank" rel="noopener" aria-label="QUANTUM RIDDLER bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="QUANTUM RIDDLER.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="VORINCLEX">
-        <div class="track-number">03</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="VORINCLEX abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">VORINCLEX</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:34</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+VORINCLEX" target="_blank" rel="noopener" aria-label="VORINCLEX bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="VORINCLEX.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="SHEOLDRED">
-        <div class="track-number">04</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="SHEOLDRED abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">SHEOLDRED</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:59</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+SHEOLDRED" target="_blank" rel="noopener" aria-label="SHEOLDRED bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="SHEOLDRED.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="HEXING SQUELCHER">
-        <div class="track-number">05</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="HEXING SQUELCHER abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">HEXING SQUELCHER</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">4:44</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+HEXING+SQUELCHER" target="_blank" rel="noopener" aria-label="HEXING SQUELCHER bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="HEXING SQUELCHER.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="EDGAR MARKOV">
-        <div class="track-number">06</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="EDGAR MARKOV abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">EDGAR MARKOV</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:02</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+EDGAR+MARKOV" target="_blank" rel="noopener" aria-label="EDGAR MARKOV bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="EDGAR MARKOV.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="NAZGÛL">
-        <div class="track-number">07</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="NAZGÛL abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">NAZGÛL</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">2:58</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+NAZGUL" target="_blank" rel="noopener" aria-label="NAZGÛL bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="NAZGÛL.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="BUSTER SWORD">
-        <div class="track-number">08</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="BUSTER SWORD abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">BUSTER SWORD</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">3:39</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+BUSTER+SWORD" target="_blank" rel="noopener" aria-label="BUSTER SWORD bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="BUSTER SWORD.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="LUMRA">
-        <div class="track-number">09</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="LUMRA abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">LUMRA</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">4:53</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+LUMRA" target="_blank" rel="noopener" aria-label="LUMRA bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="LUMRA.mp3" preload="none"></audio>
-      </div>
-
-      <div class="track" data-track data-title="CYCLONIC RIFT">
-        <div class="track-number">10</div>
-        <button class="play-btn" onclick="togglePlay(this)" aria-label="CYCLONIC RIFT abspielen">
-          <span class="play-icon">▶</span>
-          <span class="eq-bars"><span></span><span></span><span></span></span>
-        </button>
-        <div class="track-info">
-          <div class="track-title">CYCLONIC RIFT</div>
-          <div class="track-artist">JQ MAGIC</div>
-          <div class="track-error-msg">Datei nicht gefunden</div>
-        </div>
-        <div class="progress-wrap" onclick="seek(event, this)"><div class="progress-bar"><div class="progress-fill"></div></div></div>
-        <div class="track-time">2:50</div>
-        <a class="yt-btn yt-track-link track-click-stat" data-key="ytmusic" href="https://music.youtube.com/search?q=JQ+Magic+CYCLONIC+RIFT" target="_blank" rel="noopener" aria-label="CYCLONIC RIFT bei YouTube Music suchen"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <audio src="CYCLONIC RIFT.mp3" preload="none"></audio>
-      </div>
-
-      <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-spotify btn-full what-link track-click-stat" data-key="spotify" style="margin-top: 18px;">
-        Ganzes Album auf Spotify
-      </a>
-    </div>
-
-    <div class="section">
-      <h3 style="margin-bottom: 16px;">Kontakt</h3>
-      <form action="https://formspree.io/f/maeyqyyk" method="POST" class="link-list">
-        <div class="admin-field" style="margin-bottom: 0;">
-          <input type="text" name="name" placeholder="Dein Name" required />
-        </div>
-        <div class="admin-field" style="margin-bottom: 0;">
-          <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-        </div>
-        <div class="admin-field" style="margin-bottom: 0;">
-          <textarea name="message" rows="4" placeholder="Deine Nachricht..." required style="resize: vertical;"></textarea>
-        </div>
-        <button type="submit" class="btn btn-outline btn-full" style="cursor: pointer;">
-          Nachricht senden
-        </button>
-      </form>
-    </div>
-
-    <div class="section">
-      <h3 style="margin-bottom: 16px;">Links</h3>
-      <div class="link-list">
-        <a href="https://www.whatnot.com/de-DE/user/jqmagic" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="whatnot">
-          Whatnot Profil &amp; Shop
-        </a>
-        <a href="https://open.spotify.com/intl-de/artist/2057hvm6qVJGcas2SVvQhP" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="spotify">
-          Spotify – JQ MAGIC
-        </a>
-        <a href="https://music.youtube.com/search?q=JQ+Magic+THE+GATHERING" target="_blank" rel="noopener" class="btn btn-outline btn-full what-link track-click-stat" data-key="ytmusic">
-          YouTube Music – JQ MAGIC
-        </a>
-      </div>
-    </div>
+    <footer>
+      <span class="admin-trigger" id="adminTrigger">© 2026 JQ Magic · Jakob</span>
+    </footer>
 
   </div>
-
-  <footer>
-    <span class="admin-trigger" id="adminTrigger">© 2026 JQ Magic · Jakob</span>
-  </footer>
 
   <div class="admin-overlay" id="adminOverlay">
     <div class="admin-panel">
@@ -603,12 +705,12 @@
       <div id="adminLoggedOut">
         <div class="admin-title">Admin-Login</div>
         <div class="admin-sub">Passwort eingeben</div>
-        <div class="admin-field">
+        <div class="field">
           <label for="adminPassword">Passwort</label>
           <input type="password" id="adminPassword">
         </div>
         <div class="admin-error" id="adminError"></div>
-        <button class="btn btn-live btn-full" data-live="true" style="margin-top:0;" id="adminLoginBtn">Einloggen</button>
+        <button class="btn btn-primary btn-full" id="adminLoginBtn">Einloggen</button>
       </div>
 
       <div id="adminLoggedIn" style="display:none;">
@@ -620,114 +722,99 @@
           <button class="toggle" id="adminLiveToggle" aria-label="Live umschalten"></button>
         </div>
 
-        <div class="admin-field">
+        <div class="field">
           <label>Fast-Status Buttons (Hotkeys / Schnellwahl)</label>
           <div class="fast-buttons">
-            <button class="fast-btn" type="button" onclick="setFastStatus('Wir sind LIVE! 🔥', 'Zum Live-Stream →', true)">🔥 Live starten</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('GLEICH GEHTS LOS!', 'Stream-Details / Kanal →', false)">⏳ Gleich gehts los</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('SONNTAG BREAKS HEUTE', 'Zum Whatnot-Kanal →', false)">✨ Sonntag Breaks</button>
-            <button class="fast-btn" type="button" onclick="setFastStatus('PAUSE / OFFLINE', 'Zum Whatnot-Kanal →', false)">💤 Offline</button>
+            <button class="fast-btn" type="button" onclick="setFastStatus('Wir sind LIVE!', 'Zum Live-Stream', true)">Live starten</button>
+            <button class="fast-btn" type="button" onclick="setFastStatus('GLEICH GEHTS LOS', 'Stream-Details / Kanal', false)">Gleich gehts los</button>
+            <button class="fast-btn" type="button" onclick="setFastStatus('SONNTAG BREAKS HEUTE', 'Zum Whatnot-Kanal', false)">Sonntag Breaks</button>
+            <button class="fast-btn" type="button" onclick="setFastStatus('PAUSE / OFFLINE', 'Zum Whatnot-Kanal', false)">Offline</button>
           </div>
         </div>
 
-        <div class="admin-field">
-          <label for="adminStatusTextCustom">Status-Überschrift (z.B. JETZT LIVE)</label>
-          <input type="text" id="adminStatusTextCustom" placeholder="z. B. JETZT LIVE">
+        <div class="field">
+          <label for="adminStatusTextCustom">Status-Überschrift (z. B. Jetzt live)</label>
+          <input type="text" id="adminStatusTextCustom" placeholder="z. B. Jetzt live">
         </div>
 
-        <div class="admin-field">
+        <div class="field">
           <label for="adminViewers">Zuschauerzahl (leer lassen = ausblenden)</label>
           <input type="number" min="0" id="adminViewers" placeholder="z. B. 13">
         </div>
 
-        <div class="admin-field">
+        <div class="field">
           <label for="adminCountdown">Nächster Stream Countdown (Datum &amp; Uhrzeit)</label>
           <input type="datetime-local" id="adminCountdown" min="2024-01-01T00:00" max="2099-12-31T23:59">
         </div>
 
-        <div class="admin-field">
+        <div class="field">
           <label for="adminSnippetLen">Snippet-Länge in Sekunden (Standard: 30)</label>
           <input type="number" min="5" max="120" id="adminSnippetLen" placeholder="30">
         </div>
 
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top-Hit im Stream / Pull des Tages</div>
+        <hr class="divider">
+        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">Top-Hit im Stream / Pull des Tages</div>
         <div class="admin-status-row" style="margin-bottom: 8px;">
           <span>Top-Hit Banner anzeigen</span>
           <button class="toggle" id="adminTopHitToggle" aria-label="Top-Hit umschalten"></button>
         </div>
-        <div class="admin-field">
+        <div class="field">
           <label for="adminTopHitTitle">Titel / Name des Pulls</label>
           <input type="text" id="adminTopHitTitle" placeholder="z. B. Sheoldred, the Apocalypse (Foil)">
         </div>
-        <div class="admin-field">
+        <div class="field">
           <label for="adminTopHitDesc">Beschreibung / Zitat</label>
           <input type="text" id="adminTopHitDesc" placeholder="z. B. Aus dem XL-Break gezogen von @User!">
         </div>
-        <div class="admin-field">
+        <div class="field">
           <label for="adminTopHitImg">Bild-URL / Dateiname</label>
           <input type="text" id="adminTopHitImg" placeholder="z. B. sheoldred.jpg">
         </div>
 
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">⭐ Top 3 Community-Favoriten</div>
+        <hr class="divider">
+        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">Top 3 Community-Favoriten</div>
         <div class="admin-status-row" style="margin-bottom: 8px;">
           <span>Top 3 Sektion anzeigen</span>
           <button class="toggle" id="adminTop3Toggle" aria-label="Top 3 umschalten"></button>
         </div>
-        <div class="admin-field">
-          <label>Platz 1</label>
+        <div class="field">
+          <label for="top1Track">Platz 1</label>
           <select id="top1Track" style="margin-bottom:6px;"></select>
           <input type="text" id="top1Img" placeholder="Bild-URL">
         </div>
-        <div class="admin-field">
-          <label>Platz 2</label>
+        <div class="field">
+          <label for="top2Track">Platz 2</label>
           <select id="top2Track" style="margin-bottom:6px;"></select>
           <input type="text" id="top2Img" placeholder="Bild-URL">
         </div>
-        <div class="admin-field">
-          <label>Platz 3</label>
+        <div class="field">
+          <label for="top3Track">Platz 3</label>
           <select id="top3Track" style="margin-bottom:6px;"></select>
           <input type="text" id="top3Img" placeholder="Bild-URL">
         </div>
 
-        <hr style="border:0; border-top:1px solid var(--line); margin: 16px 0;">
-        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">📊 Community-Umfrage verwalten</div>
+        <hr class="divider">
+        <div class="admin-title" style="font-size: 0.9rem; margin-bottom: 10px;">Community-Umfrage verwalten</div>
         <div class="admin-status-row" style="margin-bottom: 8px;">
           <span>Umfrage aktiv anzeigen</span>
           <button class="toggle" id="adminPollActiveToggle" aria-label="Umfrage aktiv"></button>
         </div>
-        <div class="admin-field">
+        <div class="field">
           <label for="adminPollQuestion">Umfrage-Frage</label>
           <input type="text" id="adminPollQuestion" placeholder="z. B. Welcher Track ist dein Favorit?">
         </div>
-        <div class="admin-field">
+        <div class="field">
           <label>Antwort-Optionen</label>
           <div id="adminPollOptionsEditor"></div>
           <button class="btn btn-outline btn-full" type="button" id="addPollOptBtn" style="margin-top: 6px; padding: 8px;">+ Option hinzufügen</button>
         </div>
 
         <div class="stats-box" style="margin-top: 14px;">
-          <div class="stats-row">
-            <span>Seitenbesuche:</span>
-            <span class="stats-val" id="statVisits">0</span>
-          </div>
-          <div class="stats-row">
-            <span>Total Klicks:</span>
-            <span class="stats-val" id="statClicks">0</span>
-          </div>
-          <div class="stats-row" style="margin-top: 6px; font-size: 0.8rem; color: var(--mist);">
-            <span>Whatnot Klicks:</span>
-            <span class="stats-val" id="statWhatnot">0</span>
-          </div>
-          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);">
-            <span>Spotify Klicks:</span>
-            <span class="stats-val" id="statSpotify">0</span>
-          </div>
-          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);">
-            <span>YouTube Music Klicks:</span>
-            <span class="stats-val" id="statYtmusic">0</span>
-          </div>
+          <div class="stats-row"><span>Seitenbesuche:</span><span class="stats-val" id="statVisits">0</span></div>
+          <div class="stats-row"><span>Total Klicks:</span><span class="stats-val" id="statClicks">0</span></div>
+          <div class="stats-row" style="margin-top: 6px; font-size: 0.8rem; color: var(--mist);"><span>Whatnot Klicks:</span><span class="stats-val" id="statWhatnot">0</span></div>
+          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);"><span>Spotify Klicks:</span><span class="stats-val" id="statSpotify">0</span></div>
+          <div class="stats-row" style="font-size: 0.8rem; color: var(--mist);"><span>YouTube Music Klicks:</span><span class="stats-val" id="statYtmusic">0</span></div>
         </div>
 
         <div class="admin-error" id="adminSaveMsg"></div>
@@ -755,14 +842,24 @@
 
     globalVolumeInput.addEventListener('input', (e) => {
       globalVolumeVal = parseFloat(e.target.value);
-      if (currentAudio) {
-        currentAudio.volume = globalVolumeVal;
+      if (currentAudio) currentAudio.volume = globalVolumeVal;
+    });
+
+    const volToggle = document.getElementById('volToggle');
+    const volPopover = document.getElementById('volPopover');
+    volToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = volPopover.classList.toggle('open');
+      volToggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!volPopover.contains(e.target) && e.target !== volToggle) {
+        volPopover.classList.remove('open');
+        volToggle.setAttribute('aria-expanded', 'false');
       }
     });
 
-    function resetTrackVisuals(btn) {
-      btn.classList.remove('playing');
-    }
+    function resetTrackVisuals(btn) { btn.classList.remove('playing'); }
 
     function stopCurrent() {
       if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
@@ -901,14 +998,12 @@
     }
 
     document.querySelectorAll('.track-click-stat').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
         const key = link.dataset.key;
         runTransaction(statsRef, (currentStats) => {
           if (!currentStats) currentStats = { visits: 0, clicks: 0, whatnot: 0, spotify: 0, ytmusic: 0 };
           currentStats.clicks = (currentStats.clicks || 0) + 1;
-          if (key && currentStats[key] !== undefined) {
-            currentStats[key] = (currentStats[key] || 0) + 1;
-          }
+          if (key && currentStats[key] !== undefined) currentStats[key] = (currentStats[key] || 0) + 1;
           return currentStats;
         });
       });
@@ -947,11 +1042,11 @@
       pollOptionsContainer.innerHTML = '';
 
       let totalVotes = 0;
-      pollData.options.forEach((opt, idx) => {
-        const count = votesData[idx] || 0;
-        totalVotes += count;
-      });
+      pollData.options.forEach((opt, idx) => { totalVotes += (votesData[idx] || 0); });
       pollTotalVotes.textContent = `${totalVotes} Stimme${totalVotes === 1 ? '' : 'n'} insgesamt`;
+
+      const votedKey = `voted_poll_${pollData.question}`;
+      const alreadyVoted = !!localStorage.getItem(votedKey);
 
       pollData.options.forEach((opt, idx) => {
         const count = votesData[idx] || 0;
@@ -964,7 +1059,6 @@
           <span class="poll-votes">${count} (${percent}%)</span>
         `;
         btn.addEventListener('click', () => {
-          const votedKey = `voted_poll_${pollData.question}`;
           if (localStorage.getItem(votedKey)) {
             alert('Du hast bei dieser Umfrage bereits abgestimmt!');
             return;
@@ -987,11 +1081,12 @@
 
       if (data.snippetLen) {
         window.maxSnippetDuration = Number(data.snippetLen);
-        snippetSubText.textContent = `JQ MAGIC · ${window.maxSnippetDuration} Sekunden Vorschau`;
+        maxSnippetDuration = Number(data.snippetLen);
+        snippetSubText.textContent = `JQ Magic · ${maxSnippetDuration} Sekunden Vorschau`;
       }
 
       if (data.topHit && data.topHit.active && data.topHit.title) {
-        topHitBanner.style.display = 'flex';
+        topHitBanner.style.display = 'block';
         topHitTitle.textContent = data.topHit.title;
         topHitDesc.textContent = data.topHit.desc || '';
         if (data.topHit.img) topHitImg.src = data.topHit.img;
@@ -1010,7 +1105,7 @@
           const card = document.createElement('div');
           card.className = 'top3-card';
           card.innerHTML = `
-            <div class="top3-badge">#${index + 1}</div>
+            <div class="top3-rank"><span>${index + 1}</span></div>
             <div class="top3-img-wrap">
               <img src="${item.img || 'JQ MAGIC ALBUM.png'}" alt="${item.track}" onerror="this.src='JQ MAGIC ALBUM.png';">
             </div>
@@ -1028,7 +1123,8 @@
       if (isLive) {
         if (countdownInterval) clearInterval(countdownInterval);
         liveStatusText.textContent = data.statusTextCustom || 'JETZT LIVE';
-        liveBtn.textContent = 'Zum Whatnot-Kanal →';
+        liveBtn.textContent = '';
+        liveBtn.append('Zum Whatnot-Kanal');
         if (data.viewers !== undefined && data.viewers !== null && data.viewers !== '') {
           liveViewers.textContent = data.viewers + ' Zuschauer';
           liveViewers.style.display = 'inline-block';
@@ -1049,14 +1145,13 @@
               const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
               const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
               let timeStr = `${hours}h ${mins}m ${secs}s`;
               if (days > 0) timeStr = `${days}d ${timeStr}`;
-              liveStatusText.textContent = `NÄCHSTER STREAM IN: ${timeStr}`;
-              liveBtn.textContent = 'Stream-Details / Kanal →';
+              liveStatusText.textContent = `Nächster Stream in: ${timeStr}`;
+              liveBtn.textContent = 'Stream-Details / Kanal';
             } else {
               liveStatusText.textContent = data.statusTextCustom || 'NICHT LIVE';
-              liveBtn.textContent = 'Zum Whatnot-Kanal →';
+              liveBtn.textContent = 'Zum Whatnot-Kanal';
               clearInterval(countdownInterval);
             }
           };
@@ -1064,14 +1159,14 @@
           countdownInterval = setInterval(updateTimer, 1000);
         } else {
           liveStatusText.textContent = data.statusTextCustom || 'NICHT LIVE';
-          liveBtn.textContent = 'Zum Whatnot-Kanal →';
+          liveBtn.textContent = 'Zum Whatnot-Kanal';
         }
       }
     }, () => {
       liveCard.dataset.live = 'false';
       liveBtn.dataset.live = 'false';
       liveStatusText.textContent = 'NICHT LIVE';
-      liveBtn.textContent = 'Zum Whatnot-Kanal →';
+      liveBtn.textContent = 'Zum Whatnot-Kanal';
       liveViewers.style.display = 'none';
     });
 
@@ -1106,8 +1201,14 @@
     const adminPollOptionsEditor = document.getElementById('adminPollOptionsEditor');
     const addPollOptBtn = document.getElementById('addPollOptBtn');
 
-    adminTrigger.addEventListener('click', (e) => {
-      if (e.detail === 3) {
+    let footerClicks = 0;
+    let footerClickTimer = null;
+    adminTrigger.addEventListener('click', () => {
+      footerClicks++;
+      clearTimeout(footerClickTimer);
+      footerClickTimer = setTimeout(() => { footerClicks = 0; }, 700);
+      if (footerClicks === 3) {
+        footerClicks = 0;
         overlay.classList.add('open');
         passwordInput.value = '';
         adminError.textContent = '';
@@ -1151,9 +1252,7 @@
           <input type="text" value="${optText || ''}" placeholder="Option ${index + 1}" style="flex:1;" data-poll-opt>
           <button type="button" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.8rem; color: var(--crimson);">✕</button>
         `;
-        row.querySelector('button').addEventListener('click', () => {
-          row.remove();
-        });
+        row.querySelector('button').addEventListener('click', () => row.remove());
         adminPollOptionsEditor.appendChild(row);
       });
     }
@@ -1165,9 +1264,7 @@
         <input type="text" value="" placeholder="Neue Option" style="flex:1;" data-poll-opt>
         <button type="button" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.8rem; color: var(--crimson);">✕</button>
       `;
-      row.querySelector('button').addEventListener('click', () => {
-        row.remove();
-      });
+      row.querySelector('button').addEventListener('click', () => row.remove());
       adminPollOptionsEditor.appendChild(row);
     });
 
@@ -1259,10 +1356,7 @@
             desc: adminTopHitDesc.value.trim(),
             img: adminTopHitImg.value.trim()
           },
-          top3: {
-            active: top3ToggleState,
-            list: top3ListData
-          },
+          top3: { active: top3ToggleState, list: top3ListData },
           poll: {
             active: pollToggleState,
             question: adminPollQuestion.value.trim(),
